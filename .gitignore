@@ -1,0 +1,13 @@
+# IDE Settings
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+
+# Build
+dist
+
+# Miscellaneous
+.DS_Store
+*.local
