@@ -1,10 +1,10 @@
 import { Fragment, h } from 'preact';
 import { useContext } from 'preact/compat';
-import { Typography } from '../../components/Typography';
-import { Section } from '../../components/Section';
-import { Tabs } from '../../components/Tabs';
-import { Settings } from '../../components/Settings';
-import { Timer } from '../../components/Timer';
+import { Typography } from 'components/Typography';
+import { Section } from 'components/Section';
+import { Tabs } from 'components/Tabs';
+import { Settings } from 'components/Settings';
+import { Timer } from 'components/Timer';
 import { AppContext } from '../AppContext';
 
 export const Layout = () => {

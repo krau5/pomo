@@ -1,6 +1,6 @@
 import { h } from 'preact';
+import { ChangeEvent } from 'preact/compat';
 import './NumericField.css';
-import { ChangeEvent } from "preact/compat";
 
 type Props = {
   name: string;
