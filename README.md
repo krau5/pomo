@@ -11,12 +11,12 @@ The app is written using Preact with the Vite bundler
 Please, feel free to fork, add features and create pull requests so that everybody can experience the features you've built. <br />
 All the contributions are highly encouraged.
 
-### Installation and local launch
+## Installation and local launch
 
 1. Clone this repo: `git clone https://github.com/krau5/pomodoro.git`
 2. Run `npm ci` in the root folder
 3. Run `npm run dev`
 
-### License
+## License
 
 MIT — use for any purpose. Would be great if you could leave a note about the original developers. Thanks!
