@@ -1,0 +1,19 @@
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  user-select: none;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 500;
+  color: #777777
+}

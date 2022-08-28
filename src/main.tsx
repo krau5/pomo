@@ -1,8 +1,8 @@
-import { h, render } from 'preact'
-import { App } from './app'
-import './index.css'
+import { h, render } from 'preact';
+import { App } from './App';
+import './index.css';
 
-const app = document.getElementById('app')
+const app = document.getElementById('root')
 
 if (app) {
   render(<App />, app);

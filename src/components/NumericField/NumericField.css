@@ -1,0 +1,25 @@
+/* Chrome, Safari, Edge, Opera */
+.numeric-field::-webkit-outer-spin-button,
+.numeric-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.numeric-field[type=number] {
+  -moz-appearance: textfield;
+}
+
+.numeric-field {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  height: 48px;
+  width: 100%;
+  padding: 8px 16px;
+  background: #EDEDED;
+}
+
+.numeric-field:focus {
+  border: 1px solid #F97070;
+}

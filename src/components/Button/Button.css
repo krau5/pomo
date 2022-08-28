@@ -1,0 +1,29 @@
+.button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.button.primary {
+  padding: 0 32px;
+  max-height: 48px;
+  height: 48px;
+  font-weight: 700;
+  color: #FAFAFA;
+  background: #F97070;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+.button.primary:hover {
+  background: #E06464;
+}
+
+.icon-button > span {
+  font-size: 32px;
+}
+
+.icon-button.large > span {
+  font-size: 64px;
+}
