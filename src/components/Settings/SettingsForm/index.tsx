@@ -1,11 +1,11 @@
 import { Fragment, h } from 'preact';
-import {ChangeEvent, useCallback, useContext, useMemo, useState} from 'preact/compat';
-import { AppContext } from '../../../App/AppContext';
-import { Section } from '../../Section';
-import { Typography } from '../../Typography';
-import { NumericField } from '../../NumericField';
-import { Button } from '../../Button';
-import { PomodoroIntervals } from '../../../types';
+import { ChangeEvent, useCallback, useContext, useMemo, useState } from 'preact/compat';
+import { AppContext } from 'app/AppContext';
+import { Section } from 'components/Section';
+import { Typography } from 'components/Typography';
+import { NumericField } from 'components/NumericField';
+import { Button } from 'components/Button';
+import { PomodoroIntervals } from 'types';
 import './Settings.css';
 
 type Props = {
@@ -26,7 +26,7 @@ export const SettingsForm = ({ onSubmit }: Props) => {
   const handleSubmit = useCallback(() => {
     setIntervals(preferences);
     onSubmit && onSubmit();
-  }, [preferences])
+  }, [onSubmit, preferences])
 
   const columns = useMemo(() => {
     const formFields: Record<string, PomodoroIntervals> = { 'pomodoro': 'pomodoro', 'short break': 'shortBreak', 'long break': 'longBreak' }

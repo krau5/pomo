@@ -1,9 +1,9 @@
 import { h } from 'preact';
-import {useCallback, useContext, useEffect, useMemo, useState} from 'preact/compat';
-import { ProgressBar } from '../ProgressBar';
-import { Button } from '../Button';
-import { AppContext } from '../../App/AppContext';
-import { PomodoroIntervals } from "types";
+import { useCallback, useContext, useEffect, useMemo, useState } from 'preact/compat';
+import { ProgressBar } from 'components/ProgressBar';
+import { Button } from 'components/Button';
+import { AppContext } from 'app/AppContext';
+import { PomodoroIntervals } from 'types';
 
 export const Timer = () => {
   const { currentInterval, setCurrentInterval, intervals, pomodoroCount, setPomodoroCount } = useContext(AppContext);

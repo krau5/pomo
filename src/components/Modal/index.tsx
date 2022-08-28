@@ -1,6 +1,6 @@
 import { FunctionComponent, h } from 'preact';
-import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { Button } from 'components/Button';
+import { Typography } from 'components/Typography';
 import './Modal.css';
 
 type Props = {

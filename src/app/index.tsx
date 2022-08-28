@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { useState } from 'preact/compat';
 import { AppContext } from './AppContext';
 import { Layout } from './Layout';
-import { PomodoroIntervals } from '../types';
+import { PomodoroIntervals } from 'types';
 
 export const App = () => {
   const [currentInterval, setCurrentInterval] = useState<PomodoroIntervals>('pomodoro');
