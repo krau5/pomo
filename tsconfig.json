@@ -16,7 +16,6 @@
     "jsx": "preserve",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
-    "baseUrl": "./src"
   },
   "include": ["src"]
 }
