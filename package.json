@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build"
+    "build": "vite build",
+    "lint": "npx eslint ./src --ext .ts --ext .tsx --fix"
   },
   "dependencies": {
     "preact": "^10.4.1",
@@ -11,6 +12,9 @@
   },
   "devDependencies": {
     "@prefresh/vite": "^1.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
+    "eslint": "8.22.0",
     "vite": "^3.0.9"
   }
 }

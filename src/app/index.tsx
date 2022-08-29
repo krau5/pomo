@@ -15,5 +15,5 @@ export const App = () => {
     >
       <Layout />
     </AppContext.Provider>
-  )
-}
+  );
+};

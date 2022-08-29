@@ -12,7 +12,7 @@ export const ProgressBar: FunctionComponent<Props> = ({ children, progress = 1 }
   const radius = center - strokeWidth;
 
   const strokeDashoffset = 2 * 3.14 * radius * ((100 - progress) / 100);
-  const strokeDasharray = 2 * 3.14 * radius
+  const strokeDasharray = 2 * 3.14 * radius;
 
   return (
     <div className="progress-bar">

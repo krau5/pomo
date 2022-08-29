@@ -10,4 +10,4 @@ export const Section: FunctionComponent<Props> = ({ children, fullWidth = false,
   <div className="section" style={{ marginTop, marginBottom, width: fullWidth ? '100%' : undefined }}>
     {children}
   </div>
-)
+);

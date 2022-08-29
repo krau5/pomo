@@ -17,7 +17,7 @@ export const Timer = () => {
   }, []);
 
   const handlePlay = useCallback(() => {
-    setIsPaused(false)
+    setIsPaused(false);
   }, []);
 
   const getNextInterval = useCallback((): PomodoroIntervals => {
@@ -26,9 +26,9 @@ export const Timer = () => {
     }
 
     return 'shortBreak';
-  }, [currentInterval])
+  }, [currentInterval]);
 
-  const progress = useMemo(() => timer / currentIntervalTime * 100, [currentIntervalTime, timer])
+  const progress = useMemo(() => timer / currentIntervalTime * 100, [currentIntervalTime, timer]);
 
   useEffect(() => {
     if (timer >= currentIntervalTime) {
@@ -43,23 +43,23 @@ export const Timer = () => {
         setPomodoroCount((count) => count + 1);
       }
 
-      setCurrentInterval(getNextInterval())
+      setCurrentInterval(getNextInterval());
       setTimer(0);
     }
-  },  [currentInterval, currentIntervalTime, getNextInterval, pomodoroCount, timer])
+  },  [currentInterval, currentIntervalTime, getNextInterval, pomodoroCount, timer]);
 
   useEffect(() => {
     if (!isPaused && timer <= currentIntervalTime) {
       const interval = setInterval(() => {
         setTimer(timer + 1);
-      }, 1000)
+      }, 1000);
 
       return () => {
         clearInterval(interval);
-      }
+      };
     }
 
-    return () => {}
+    return () => {};
   }, [currentIntervalTime, isPaused, timer]);
 
   return (
@@ -68,5 +68,5 @@ export const Timer = () => {
 
       {!isPaused && <Button color="primary" icon="pause_circle_outline" onClick={handlePause} size="large" />}
     </ProgressBar>
-  )
-}
+  );
+};

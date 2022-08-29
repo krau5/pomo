@@ -10,7 +10,7 @@ type Props = {
 
 const Overlay: FunctionComponent = ({ children }) => (
   <div className="overlay">{children}</div>
-)
+);
 
 export const Modal: FunctionComponent<Props> = ({ children, onClose, title}) => {
   return (
@@ -25,5 +25,5 @@ export const Modal: FunctionComponent<Props> = ({ children, onClose, title}) => 
         <div className="modal-content">{children}</div>
       </div>
     </Overlay>
-  )
-}
+  );
+};

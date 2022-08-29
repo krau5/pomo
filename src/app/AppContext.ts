@@ -22,4 +22,4 @@ export const AppContext = createContext<AppContextValue>({
   setIntervals: () => {},
   pomodoroCount: 0,
   setPomodoroCount: () => {}
-})
+});

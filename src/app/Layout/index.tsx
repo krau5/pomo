@@ -32,5 +32,5 @@ export const Layout = () => {
         <Settings />
       </Section>
     </Fragment>
-  )
-}
+  );
+};
