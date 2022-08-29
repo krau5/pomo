@@ -27,5 +27,5 @@ export const Tabs = ({ tabs, activeTab }: Props) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};

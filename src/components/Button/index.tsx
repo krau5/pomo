@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from "preact";
+import { FunctionComponent, h } from 'preact';
 import './Button.css';
 
 type Props = {
@@ -24,8 +24,8 @@ export const Button: FunctionComponent<Props> = ({
           {icon}
         </span>
       </button>
-    )
+    );
   }
 
-  return <button className="button primary" type={type} onClick={onClick}>{children}</button>
-}
+  return <button className="button primary" type={type} onClick={onClick}>{children}</button>;
+};

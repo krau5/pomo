@@ -9,11 +9,11 @@ export const Settings = () => {
 
   const handleClick = useCallback(() => {
     setOpened(true);
-  }, [])
+  }, []);
 
   const handleClose = useCallback(() => {
     setOpened(false);
-  }, [])
+  }, []);
 
   return (
     <div className="settings">
@@ -25,5 +25,5 @@ export const Settings = () => {
         </Modal>
       )}
     </div>
-  )
-}
+  );
+};

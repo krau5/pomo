@@ -10,4 +10,4 @@ type Props = {
 
 export const NumericField = ({ name, onChange, value }: Props) => (
   <input className="numeric-field" name={name} onChange={onChange} value={value} type="number" />
-)
+);
