@@ -23,5 +23,5 @@
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "@typescript-eslint/no-empty-function": ["off", "always"]
-    },
+    }
 }
