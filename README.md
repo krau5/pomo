@@ -8,7 +8,7 @@ This repo contains a web-version of a simple multiplatform Pomodoro Timer. <br /
 Pomodoro will help you manage your time and let you focus on any tasks. <br />
 The app is written using Preact with the Vite bundler
 
-Please, feel free to fork, add features and create pull requests so that everybody can experience the features you've built. <br />
+Please, feel free to fork, add features and create pull requests so that everybody can experience the features you've built.
 All the contributions are highly encouraged.
 
 ## Installation and local launch
