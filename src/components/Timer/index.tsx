@@ -6,9 +6,10 @@ import { AppContext } from 'app/AppContext';
 import { PomodoroIntervals } from 'types';
 
 export const Timer = () => {
-  const { currentInterval, setCurrentInterval, intervals, pomodoroCount, setPomodoroCount } = useContext(AppContext);
+  const { currentInterval, setCurrentInterval, intervals } = useContext(AppContext);
   const currentIntervalTime = intervals[currentInterval] * 60;
 
+  const [pomodoroCount, setPomodoroCount] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [timer, setTimer] = useState(0);
 
@@ -27,6 +28,13 @@ export const Timer = () => {
 
     return 'shortBreak';
   }, [currentInterval]);
+
+  const resetTimer = useCallback(() => {
+    setCurrentInterval('pomodoro');
+    setPomodoroCount(0);
+    setIsPaused(true);
+    setTimer(0);
+  }, []);
 
   const progress = useMemo(() => timer / currentIntervalTime * 100, [currentIntervalTime, timer]);
 
@@ -61,6 +69,10 @@ export const Timer = () => {
 
     return () => {};
   }, [currentIntervalTime, isPaused, timer]);
+
+  useEffect(() => {
+    resetTimer();
+  }, [intervals, resetTimer]);
 
   return (
     <ProgressBar progress={progress}>

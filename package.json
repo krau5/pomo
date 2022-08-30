@@ -2,7 +2,7 @@
   "name": "pomodoro",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --host --port 3000",
     "build": "vite build",
     "lint": "npx eslint ./src --ext .ts --ext .tsx --fix"
   },
