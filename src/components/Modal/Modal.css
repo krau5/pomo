@@ -7,7 +7,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 20%);
+  background: var(--transparent-black);
   padding-top: 196px
 }
 
@@ -15,7 +15,7 @@
   padding: 24px;
   margin: 0 auto;
   border-radius: 16px;
-  background: #FAFAFA;
+  background: var(--light-gray);
   min-width: 480px;
 }
 
@@ -34,7 +34,7 @@
   position: absolute;
   width: calc(100% + 48px);
   height: 1px;
-  background: #C4C4C4;
+  background: var(--dark-gray);
   bottom: 0;
   left: -24px;
 }

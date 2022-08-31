@@ -23,10 +23,10 @@
 }
 
 .indicator > .track {
-  stroke: #DDDDDD;
+  stroke: var(--gray);
 }
 
 .indicator > .indication {
-  stroke: #F97070;
+  stroke: var(--primary);
   stroke-linecap: round;
 }
