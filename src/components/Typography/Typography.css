@@ -15,5 +15,5 @@
 .caption {
   font-size: 12px;
   font-weight: 500;
-  color: #777777
+  color: var(--subtle-text);
 }

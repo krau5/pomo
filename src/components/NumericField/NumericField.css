@@ -12,14 +12,14 @@
 
 .numeric-field {
   outline: none;
-  border: none;
   border-radius: 8px;
   height: 48px;
   width: 100%;
   padding: 8px 16px;
-  background: #EDEDED;
+  background: var(--gray);
+  border: 1px solid var(--dark-gray);
 }
 
 .numeric-field:focus {
-  border: 1px solid #F97070;
+  border-color: var(--primary);
 }

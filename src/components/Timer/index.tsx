@@ -9,17 +9,19 @@ export const Timer = () => {
   const { currentInterval, setCurrentInterval, intervals } = useContext(AppContext);
   const currentIntervalTime = intervals[currentInterval] * 60;
 
+  const sound = new Audio('src/assets/sounds/ring.mp3');
   const [pomodoroCount, setPomodoroCount] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [timer, setTimer] = useState(0);
 
   const handlePause = useCallback(() => {
     setIsPaused(true);
-  }, []);
+  }, [sound]);
 
   const handlePlay = useCallback(() => {
     setIsPaused(false);
-  }, []);
+    sound.play();
+  }, [sound]);
 
   const getNextInterval = useCallback((): PomodoroIntervals => {
     if (currentInterval === 'longBreak' || currentInterval === 'shortBreak') {
@@ -41,6 +43,8 @@ export const Timer = () => {
   useEffect(() => {
     if (timer >= currentIntervalTime) {
       if (currentInterval === 'pomodoro' && pomodoroCount === 3) {
+        sound.play();
+
         setPomodoroCount(0);
         setCurrentInterval('longBreak');
         setTimer(0);
@@ -51,6 +55,7 @@ export const Timer = () => {
         setPomodoroCount((count) => count + 1);
       }
 
+      sound.play();
       setCurrentInterval(getNextInterval());
       setTimer(0);
     }
