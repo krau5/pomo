@@ -8,15 +8,14 @@
   top: 0;
   left: 0;
   background: var(--transparent-black);
-  padding-top: 196px
+  padding-top: 196px;
 }
 
 .modal {
   padding: 24px;
-  margin: 0 auto;
+  margin: 0 8px;
   border-radius: 16px;
   background: var(--light-gray);
-  min-width: 480px;
 }
 
 .modal-header {
@@ -41,4 +40,11 @@
 
 .modal-content {
   padding-top: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    min-width: 480px;
+    margin: 0 auto;
+  }
 }
