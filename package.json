@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite --host --port 3000",
     "build": "vite build",
+    "preview": "vite preview --host --port 3000",
     "lint": "npx eslint ./src --ext .ts --ext .tsx --fix"
   },
   "dependencies": {
