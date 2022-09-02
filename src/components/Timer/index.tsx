@@ -5,11 +5,13 @@ import { Button } from 'components/Button';
 import { AppContext } from 'app/AppContext';
 import { PomodoroIntervals } from 'types';
 
+const soundURL = new URL('/sounds/ring.mp3', import.meta.url);
+
 export const Timer = () => {
   const { currentInterval, setCurrentInterval, intervals } = useContext(AppContext);
   const currentIntervalTime = intervals[currentInterval] * 60;
 
-  const sound = new Audio('src/assets/sounds/ring.mp3');
+  const sound = new Audio(soundURL.href);
   const [pomodoroCount, setPomodoroCount] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [timer, setTimer] = useState(0);
