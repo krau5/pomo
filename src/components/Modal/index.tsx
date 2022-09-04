@@ -12,7 +12,7 @@ const Overlay: FunctionComponent = ({ children }) => (
   <div className="overlay">{children}</div>
 );
 
-export const Modal: FunctionComponent<Props> = ({ children, onClose, title}) => {
+export const Modal: FunctionComponent<Props> = ({ children, onClose, title }) => {
   return (
     <Overlay>
       <div className="modal">

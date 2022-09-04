@@ -22,6 +22,7 @@
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
-        "@typescript-eslint/no-empty-function": ["off", "always"]
+        "@typescript-eslint/no-empty-function": ["off", "always"],
+        "object-curly-spacing": ["error", "always"]
     }
 }
