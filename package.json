@@ -15,7 +15,7 @@
     "@prefresh/vite": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
-    "eslint": "8.22.0",
+    "eslint": "^8.24.0",
     "vite": "^3.0.9"
   }
 }
