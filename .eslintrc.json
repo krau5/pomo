@@ -23,6 +23,9 @@
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "@typescript-eslint/no-empty-function": ["off", "always"],
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        "eol-last": ["error", "always"],
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "comma-dangle": ["error", "always-multiline"]
     }
 }

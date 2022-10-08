@@ -17,6 +17,7 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "baseUrl": "./src",
+    "types": ["vite/client", "node"]
   },
   "include": ["src"]
 }
