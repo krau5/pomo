@@ -1,4 +1,4 @@
-import { h, render } from 'preact';
+import { createRoot } from 'react-dom/client';
 import { initializeApp } from 'firebase/app';
 import { App } from './app';
 import './index.css';
@@ -17,6 +17,6 @@ const firebaseApplication = initializeApp(firebaseConfig);
 
 const app = document.getElementById('root');
 
-if (app) {
-  render(<App />, app);
-}
+const root = createRoot(app!);
+
+root.render(<App />);

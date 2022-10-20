@@ -1,18 +1,17 @@
-import { createContext } from 'preact';
-import { StateUpdater } from 'preact/compat';
-import { PomodoroIntervals } from '../types';
+import { createContext, Dispatch, SetStateAction } from 'react';
+import { PomodoroIntervals } from 'types';
 
 type AppContextValue = {
   currentInterval: PomodoroIntervals;
-  setCurrentInterval: StateUpdater<PomodoroIntervals>;
+  setCurrentInterval: Dispatch<SetStateAction<PomodoroIntervals>>;
   intervals: {
     pomodoro: number;
     shortBreak: number;
     longBreak: number;
   };
-  setIntervals: StateUpdater<Record<PomodoroIntervals, number>>;
+  setIntervals:  Dispatch<SetStateAction<Record<PomodoroIntervals, number>>>;
   pomodoroCount: number;
-  setPomodoroCount: StateUpdater<number>;
+  setPomodoroCount: Dispatch<SetStateAction<number>>;
 }
 
 export const AppContext = createContext<AppContextValue>({
@@ -21,5 +20,5 @@ export const AppContext = createContext<AppContextValue>({
   intervals: { pomodoro: 0, shortBreak: 0, longBreak: 0 },
   setIntervals: () => {},
   pomodoroCount: 0,
-  setPomodoroCount: () => {}
+  setPomodoroCount: () => {},
 });

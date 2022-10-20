@@ -1,5 +1,4 @@
-import { Fragment, h } from 'preact';
-import { ChangeEvent, useCallback, useContext, useMemo, useState } from 'preact/compat';
+import { ChangeEvent, useCallback, useContext, useMemo, useState } from 'react';
 import { AppContext } from 'app/AppContext';
 import { Section } from 'components/Section';
 import { Typography } from 'components/Typography';
@@ -12,15 +11,19 @@ type Props = {
   onSubmit?: () => void;
 }
 
+const formFields: Record<string, PomodoroIntervals> = {
+  pomodoro: 'pomodoro',
+  'short break': 'shortBreak',
+  'long break': 'longBreak',
+};
+
 export const SettingsForm = ({ onSubmit }: Props) => {
   const { intervals, setIntervals } = useContext(AppContext);
 
   const [preferences, setPreferences] = useState<Record<PomodoroIntervals, number>>({ ...intervals });
 
-  const handleChange = useCallback((name: PomodoroIntervals) => (event: ChangeEvent) => {
-    const target = event.target as HTMLInputElement;
-
-    setPreferences((currentPreferences) => ({ ...currentPreferences, [name]: Number(target.value) }));
+  const handleChange = useCallback((name: PomodoroIntervals) => (event: ChangeEvent<HTMLInputElement>) => {
+    setPreferences((currentPreferences) => ({ ...currentPreferences, [name]: Number(event.target.value) }));
   }, []);
 
   const handleSubmit = useCallback(() => {
@@ -28,26 +31,22 @@ export const SettingsForm = ({ onSubmit }: Props) => {
     onSubmit && onSubmit();
   }, [onSubmit, preferences]);
 
-  const columns = useMemo(() => {
-    const formFields: Record<string, PomodoroIntervals> = { 'pomodoro': 'pomodoro', 'short break': 'shortBreak', 'long break': 'longBreak' };
+  const columns = useMemo(() => Object.entries(formFields).map(([title, intervalName]) => (
+    <div className="column" key={intervalName}>
+      <Typography variant="caption">{title}</Typography>
 
-    return Object.entries(formFields).map(([title, intervalName]) => (
-      <div className="column">
-        <Typography variant="caption">{title}</Typography>
-
-        <Section marginTop={8}>
-          <NumericField
-            name={intervalName}
-            onChange={handleChange(intervalName)}
-            value={preferences[intervalName]}
-          />
-        </Section>
-      </div>
-    ));
-  }, []);
+      <Section marginTop={8}>
+        <NumericField
+          name={intervalName}
+          onChange={handleChange(intervalName)}
+          value={preferences[intervalName]}
+        />
+      </Section>
+    </div>
+  )), [handleChange, preferences]);
 
   return (
-    <Fragment>
+    <>
       <Section marginBottom={8}>
         <Typography variant="subtitle">Time (minutes)</Typography>
       </Section>
@@ -57,6 +56,6 @@ export const SettingsForm = ({ onSubmit }: Props) => {
       <div className="container">
         <Button onClick={handleSubmit}>Apply</Button>
       </div>
-    </Fragment>
+    </>
   );
 };

@@ -1,5 +1,4 @@
-import { h } from 'preact';
-import { useCallback, useState } from 'preact/compat';
+import { useCallback, useState } from 'react';
 import { Button } from 'components/Button';
 import { Modal } from 'components/Modal';
 import { SettingsForm } from './SettingsForm';

@@ -1,18 +1,17 @@
-import { FunctionComponent, h } from 'preact';
-import { JSXInternal } from 'preact/src/jsx';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import './Typography.css';
 
-type Props = {
+type TypographyProps = {
   variant?: 'title' | 'subtitle' | 'caption';
 }
 
-const TypographyTags: Record<NonNullable<Props['variant']>, keyof JSXInternal.IntrinsicElements> = {
+const TypographyTags: Record<NonNullable<TypographyProps['variant']>, keyof JSX.IntrinsicElements> = {
   title: 'h1',
   subtitle: 'h3',
-  caption: 'span'
+  caption: 'span',
 };
 
-export const Typography: FunctionComponent<Props> = ({ children, variant = 'title' }) => {
+export const Typography: FunctionComponent<PropsWithChildren<TypographyProps>> = ({ children, variant = 'title' }) => {
   const TypographyTag = TypographyTags[variant];
 
   return <TypographyTag className={variant}>{children}</TypographyTag>;

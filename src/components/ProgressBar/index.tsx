@@ -1,11 +1,11 @@
-import { FunctionComponent, h } from 'preact';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import './ProgressBar.css';
 
 type Props = {
   progress: number;
 }
 
-export const ProgressBar: FunctionComponent<Props> = ({ children, progress = 1 }) => {
+export const ProgressBar: FunctionComponent<PropsWithChildren<Props>> = ({ children, progress = 1 }) => {
   const size = 256;
   const strokeWidth = 10;
   const center = 256 / 2;
@@ -29,8 +29,8 @@ export const ProgressBar: FunctionComponent<Props> = ({ children, progress = 1 }
           cx={center}
           cy={center}
           r={radius}
-          stroke-dasharray={strokeDasharray}
-          stroke-dashoffset={`${strokeDashoffset}px`}
+          strokeDasharray={strokeDasharray}
+          strokeDashoffset={`${strokeDashoffset}px`}
         />
       </svg>
 
