@@ -1,5 +1,4 @@
-import { h } from 'preact';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'preact/compat';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { ProgressBar } from 'components/ProgressBar';
 import { Button } from 'components/Button';
 import { AppContext } from 'app/AppContext';

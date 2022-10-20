@@ -1,5 +1,4 @@
-import { h } from 'preact';
-import { useState } from 'preact/compat';
+import { useState } from 'react';
 import { AppContext } from './AppContext';
 import { Layout } from './Layout';
 import { PomodoroIntervals } from 'types';

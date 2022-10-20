@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import './Tabs.css';
 
 type Tab = {
@@ -17,10 +16,11 @@ export const Tabs = ({ tabs, activeTab }: Props) => {
       {tabs.map((tab) => (
         <div
           className="tab"
+          key={tab.id}
           style={{
             width: `calc((100% - ${tabs.length - 1} * 8px) / ${tabs.length})`,
             background: tab.id === activeTab ? '#F97070' : 'transparent',
-            color: tab.id === activeTab ? '#FAFAFA' : 'inherit'
+            color: tab.id === activeTab ? '#FAFAFA' : 'inherit',
           }}
         >
           {tab.name}

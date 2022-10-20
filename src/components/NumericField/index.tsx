@@ -1,10 +1,9 @@
-import { h } from 'preact';
-import { ChangeEvent } from 'preact/compat';
+import { ChangeEvent } from 'react';
 import './NumericField.css';
 
 type Props = {
   name: string;
-  onChange?: (event: ChangeEvent) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   value: number;
 }
 

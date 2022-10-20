@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from 'preact';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import './Button.css';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
   type?: 'button' | 'submit';
 }
 
-export const Button: FunctionComponent<Props> = ({
+export const Button: FunctionComponent<PropsWithChildren<Props>> = ({
   children,
   color,
   icon,
