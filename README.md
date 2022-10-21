@@ -15,7 +15,8 @@ All the contributions are highly encouraged.
 
 1. Clone this repo: `git clone https://github.com/krau5/pomodoro.git`
 2. Run `npm ci` in the root folder
-3. Run `npm run dev`
+3. Fill all the fields in `.env` using your firebase data
+4. Run `npm run dev`
 
 ## License
 
