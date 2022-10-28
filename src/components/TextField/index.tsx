@@ -5,11 +5,17 @@ export type TextFieldProps = {
   name?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  type?: 'text' | 'number';
   value?: string | number;
-} & HTMLProps<HTMLInputElement>
+} & HTMLProps<HTMLInputElement>;
 
-export const TextField = ({ name, onChange, placeholder, type = 'text', value, ...props }: TextFieldProps) => (
+export const TextField = ({
+  name,
+  onChange,
+  placeholder,
+  type = 'text',
+  value,
+  ...props
+}: TextFieldProps) => (
   <input
     css={styles.textField}
     name={name}

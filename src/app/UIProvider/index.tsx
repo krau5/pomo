@@ -10,7 +10,10 @@ const makeTheme = (themeSettings: StaticThemeSettings): Theme => {
     ...theme,
     unit,
     sizing: (...sizes) => {
-      return sizes.reduce((accumulator, size) => `${accumulator}${size * unit}px `, '');
+      return sizes.reduce(
+        (accumulator, size) => `${accumulator}${size * unit}px `,
+        ''
+      );
     },
   };
 };

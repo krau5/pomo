@@ -8,11 +8,15 @@ export const Button: FunctionComponent<PropsWithChildren<ButtonProps>> = ({
   fullWidth = false,
   icon,
   onClick,
-  size= 'medium',
+  size = 'medium',
   type = 'button',
   variant = 'primary',
 }) => (
-  <button css={styles.button(icon, fullWidth, size, variant)} onClick={onClick} type={type}>
+  <button
+    css={styles.button(icon, fullWidth, size, variant)}
+    onClick={onClick}
+    type={type}
+  >
     {icon && (
       <span css={styles.icon(iconColor)} className="material-icons">
         {icon}

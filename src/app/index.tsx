@@ -12,10 +12,7 @@ export const App = () => (
     <AppProvider>
       <BrowserRouter>
         <Switch>
-          <Route
-            path={Routes.HOME}
-            element={<Layout children={<Home />} />}
-          />
+          <Route path={Routes.HOME} element={<Layout children={<Home />} />} />
 
           <Route
             path={Routes.LOGIN}

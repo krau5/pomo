@@ -3,9 +3,12 @@ import { styles } from './ProgressBar.styles';
 
 type Props = {
   progress: number;
-}
+};
 
-export const ProgressBar: FunctionComponent<PropsWithChildren<Props>> = ({ children, progress = 1 }) => {
+export const ProgressBar: FunctionComponent<PropsWithChildren<Props>> = ({
+  children,
+  progress = 1,
+}) => {
   const size = 256;
   const strokeWidth = 10;
   const center = 256 / 2;
@@ -17,12 +20,7 @@ export const ProgressBar: FunctionComponent<PropsWithChildren<Props>> = ({ child
   return (
     <div css={styles.progressBar}>
       <svg className="indicator" width={size} height={size}>
-        <circle
-          css={styles.circle()}
-          cx={center}
-          cy={center}
-          r={radius}
-        />
+        <circle css={styles.circle()} cx={center} cy={center} r={radius} />
 
         <circle
           css={styles.circle(true)}

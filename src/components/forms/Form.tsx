@@ -4,22 +4,30 @@ import { FormEvent, PropsWithChildren, useCallback } from 'react';
 export type FormProps<FormData extends FieldValues> = {
   form: UseFormReturn<FormData>;
   onSubmit: (values: FormData) => void;
-}
+};
 
 export const Form = <FormData extends FieldValues>({
-  children, form, onSubmit,
+  children,
+  form,
+  onSubmit,
 }: PropsWithChildren<FormProps<FormData>>) => {
   const { handleSubmit } = form;
 
-  const submit = useCallback((data: FormData) => {
-    onSubmit(data);
-  }, [onSubmit]);
+  const submit = useCallback(
+    (data: FormData) => {
+      onSubmit(data);
+    },
+    [onSubmit]
+  );
 
-  const handleFormSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
-    event.stopPropagation();
+  const handleFormSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.stopPropagation();
 
-    handleSubmit(submit)(event);
-  }, [handleSubmit, submit]);
+      handleSubmit(submit)(event);
+    },
+    [handleSubmit, submit]
+  );
 
   return (
     <FormProvider {...form}>

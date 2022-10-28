@@ -6,7 +6,8 @@
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react-hooks/recommended"
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended"
     ],
     "overrides": [
     ],
@@ -17,15 +18,15 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "react-hooks"
+        "react-hooks",
+        "prettier"
     ],
     "rules": {
-        "comma-dangle": ["error", "always-multiline"],
         "eol-last": ["error", "always"],
-        "indent": ["error", 2],
         "linebreak-style": ["error", "unix"],
         "no-multiple-empty-lines": ["error", { "max": 1 }],
         "object-curly-spacing": ["error", "always"],
+        "prettier/prettier": ["error", { "singleQuote": true }],
         "semi": ["error", "always"],
         "quotes": ["error", "single"],
         "@typescript-eslint/no-empty-function": ["off", "always"],

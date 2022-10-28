@@ -2,7 +2,10 @@ import { css, SerializedStyles } from '@emotion/react';
 import { TypographyVariants } from './types';
 import { Theme } from 'types';
 
-export const styles: Record<TypographyVariants, (theme: Theme) => SerializedStyles> = {
+export const styles: Record<
+  TypographyVariants,
+  (theme: Theme) => SerializedStyles
+> = {
   title: (theme) => css`
     font-size: ${theme.sizing(9)};
     font-weight: 700;

@@ -3,12 +3,12 @@ import { styles } from './Tabs.styles';
 type Tab = {
   id: string;
   name: string;
-}
+};
 
 type Props = {
   tabs: Tab[];
   activeTab?: string;
-}
+};
 
 export const Tabs = ({ tabs, activeTab }: Props) => (
   <div css={styles.tabs}>

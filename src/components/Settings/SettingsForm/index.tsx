@@ -9,7 +9,7 @@ import { styles } from './SettingsForm.styles';
 
 type Props = {
   onSubmit?: () => void;
-}
+};
 
 const formFields: Record<string, PomodoroIntervals> = {
   pomodoro: 'pomodoro',
@@ -20,31 +20,43 @@ const formFields: Record<string, PomodoroIntervals> = {
 export const SettingsForm = ({ onSubmit }: Props) => {
   const { intervals, setIntervals } = useContext(AppContext);
 
-  const [preferences, setPreferences] = useState<Record<PomodoroIntervals, number>>({ ...intervals });
+  const [preferences, setPreferences] = useState<
+    Record<PomodoroIntervals, number>
+  >({ ...intervals });
 
-  const handleChange = useCallback((name: PomodoroIntervals) => (event: ChangeEvent<HTMLInputElement>) => {
-    setPreferences((currentPreferences) => ({ ...currentPreferences, [name]: Number(event.target.value) }));
-  }, []);
+  const handleChange = useCallback(
+    (name: PomodoroIntervals) => (event: ChangeEvent<HTMLInputElement>) => {
+      setPreferences((currentPreferences) => ({
+        ...currentPreferences,
+        [name]: Number(event.target.value),
+      }));
+    },
+    []
+  );
 
   const handleSubmit = useCallback(() => {
     setIntervals(preferences);
     onSubmit && onSubmit();
-  }, [onSubmit, preferences]);
+  }, [onSubmit, preferences, setIntervals]);
 
-  const columns = useMemo(() => Object.entries(formFields).map(([title, intervalName]) => (
-    <div css={styles.column} key={intervalName}>
-      <Typography variant="caption">{title}</Typography>
+  const columns = useMemo(
+    () =>
+      Object.entries(formFields).map(([title, intervalName]) => (
+        <div css={styles.column} key={intervalName}>
+          <Typography variant="caption">{title}</Typography>
 
-      <Box marginTop={2}>
-        <TextField
-          name={intervalName}
-          onChange={handleChange(intervalName)}
-          value={preferences[intervalName]}
-          type="number"
-        />
-      </Box>
-    </div>
-  )), [handleChange, preferences]);
+          <Box marginTop={2}>
+            <TextField
+              name={intervalName}
+              onChange={handleChange(intervalName)}
+              value={preferences[intervalName]}
+              type="number"
+            />
+          </Box>
+        </div>
+      )),
+    [handleChange, preferences]
+  );
 
   return (
     <>

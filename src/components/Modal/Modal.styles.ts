@@ -32,7 +32,7 @@ export const styles = {
     padding-bottom: ${theme.sizing(6)};
     font-size: ${theme.sizing(4)};
     font-weight: 700;
-    
+
     &:after {
       content: '';
       position: absolute;
