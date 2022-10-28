@@ -3,13 +3,13 @@ import { Theme } from 'types';
 
 export const styles = {
   textField: (theme: Theme) => css`
-    &[type=number]::-webkit-outer-spin-button,
-    &[type=number]::-webkit-inner-spin-button {
+    &[type='number']::-webkit-outer-spin-button,
+    &[type='number']::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
 
-    &[type=number] {
+    &[type='number'] {
       -moz-appearance: textfield;
     }
 

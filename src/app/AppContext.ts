@@ -9,10 +9,10 @@ type AppContextValue = {
     shortBreak: number;
     longBreak: number;
   };
-  setIntervals:  Dispatch<SetStateAction<Record<PomodoroIntervals, number>>>;
+  setIntervals: Dispatch<SetStateAction<Record<PomodoroIntervals, number>>>;
   pomodoroCount: number;
   setPomodoroCount: Dispatch<SetStateAction<number>>;
-}
+};
 
 export const AppContext = createContext<AppContextValue>({
   currentInterval: 'pomodoro',

@@ -8,4 +8,4 @@ export type ButtonProps = {
   size?: 'medium' | 'large';
   type?: 'button' | 'submit';
   variant?: 'primary' | 'light';
-}
+};

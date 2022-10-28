@@ -17,6 +17,7 @@ All the contributions are highly encouraged.
 2. Run `npm ci` in the root folder
 3. Fill all the fields in `.env` using your firebase data
 4. Run `npm run dev`
+5. If you want to use pre-commit hooks, you should also run `npm run prepare`
 
 ## License
 

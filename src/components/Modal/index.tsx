@@ -6,13 +6,17 @@ import { styles } from './Modal.styles';
 export type ModalProps = {
   onClose: () => void;
   title: string;
-}
+};
 
 const Overlay = ({ children }: PropsWithChildren) => (
   <div css={styles.overlay}>{children}</div>
 );
 
-export const Modal = ({ children, onClose, title }: PropsWithChildren<ModalProps>) => (
+export const Modal = ({
+  children,
+  onClose,
+  title,
+}: PropsWithChildren<ModalProps>) => (
   <Overlay>
     <div css={styles.modal}>
       <header css={styles.header}>

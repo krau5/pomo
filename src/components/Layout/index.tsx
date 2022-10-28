@@ -6,7 +6,8 @@ export const Layout = ({ children }: PropsWithChildren) => (
   <>
     <Typography>pomodoro</Typography>
 
-    <Box fullWidth marginTop={8}>{children}</Box>
+    <Box fullWidth marginTop={8}>
+      {children}
+    </Box>
   </>
 );
-

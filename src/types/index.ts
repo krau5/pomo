@@ -15,8 +15,8 @@ export type ThemeColorName =
 export type StaticThemeSettings = {
   color: Record<ThemeColorName, string>;
   unit: number;
-}
+};
 
 export type Theme = StaticThemeSettings & {
   sizing: (...sizes: number[]) => string;
-}
+};

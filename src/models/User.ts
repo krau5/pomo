@@ -1,11 +1,12 @@
 import { doc, collection, getDoc, setDoc } from 'firebase/firestore';
 import { database } from 'constants/firebase';
+import bcrypt from 'bcryptjs';
 
 export type Profile = {
   email: string;
   password: string;
   username: string;
-}
+};
 
 class UserService {
   collection;
@@ -14,12 +15,16 @@ class UserService {
     this.collection = collection(database, 'users');
   }
 
-  async createProfile(profile: Profile) {
+  async createProfile({ password: plainPassword, ...profile }: Profile) {
     const userRef = doc(this.collection, profile.username);
     const snapshot = await getDoc(userRef);
 
     if (!snapshot.exists()) {
-      setDoc(userRef, { profile });
+      bcrypt.genSalt(10, (_, salt) => {
+        bcrypt.hash(plainPassword, salt, (_, hash) => {
+          setDoc(userRef, { ...profile, password: hash });
+        });
+      });
     }
   }
 }

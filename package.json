@@ -5,10 +5,12 @@
     "dev": "vite --host --port 3000",
     "build": "vite build",
     "preview": "vite preview --host --port 3000",
-    "lint": "npx eslint ./src --ext .ts --ext .tsx --fix"
+    "lint": "npx eslint ./src --fix --ext .ts --ext .tsx ",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
+    "bcryptjs": "^2.4.3",
     "firebase": "^9.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -18,6 +20,7 @@
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.10.2",
+    "@types/bcryptjs": "^2.4.2",
     "@types/node": "^18.8.3",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
@@ -25,7 +28,11 @@
     "@typescript-eslint/parser": "^5.35.1",
     "@vitejs/plugin-react": "^2.1.0",
     "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
+    "prettier": "2.7.1",
     "typescript": "^4.8.2",
     "vite": "^3.1.8"
   }
