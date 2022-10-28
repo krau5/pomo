@@ -1,31 +1,24 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import './Button.css';
+import { ButtonProps } from './types';
+import { styles } from './Button.styles';
 
-type Props = {
-  color?: 'primary' | 'default';
-  icon?: string;
-  onClick?: () => void;
-  size?: 'medium' | 'large';
-  type?: 'button' | 'submit';
-}
-
-export const Button: FunctionComponent<PropsWithChildren<Props>> = ({
+export const Button: FunctionComponent<PropsWithChildren<ButtonProps>> = ({
   children,
-  color,
+  iconColor = 'inherit',
+  fullWidth = false,
   icon,
   onClick,
   size= 'medium',
   type = 'button',
-}) => {
-  if (icon) {
-    return (
-      <button type={type} className={`button icon-button ${size}`} onClick={onClick}>
-        <span className="material-icons" style={{ color: color === 'primary' ? '#F97070' : 'inherit' }}>
-          {icon}
-        </span>
-      </button>
-    );
-  }
+  variant = 'primary',
+}) => (
+  <button css={styles.button(icon, fullWidth, size, variant)} onClick={onClick} type={type}>
+    {icon && (
+      <span css={styles.icon(iconColor)} className="material-icons">
+        {icon}
+      </span>
+    )}
 
-  return <button className="button primary" type={type} onClick={onClick}>{children}</button>;
-};
+    {children}
+  </button>
+);

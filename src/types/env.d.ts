@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly MESSAGING_SENDER_ID: string
   readonly APP_ID: string
   readonly MEASUREMENT_ID: string
+  readonly DATABASE_URL: string
 }
 
 interface ImportMeta {

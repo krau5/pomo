@@ -1,18 +1,33 @@
-import { useState } from 'react';
-import { AppContext } from './AppContext';
-import { Layout } from './Layout';
-import { PomodoroIntervals } from 'types';
+import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
+import { Layout } from 'components/Layout';
+import { Home } from 'pages/Home';
+import { Login } from 'pages/Login';
+import { SignUp } from 'pages/SignUp';
+import { AppProvider } from 'app/AppProvider';
+import { UIProvider } from 'app/UIProvider';
+import { Routes } from 'constants/routes';
 
-export const App = () => {
-  const [currentInterval, setCurrentInterval] = useState<PomodoroIntervals>('pomodoro');
-  const [intervals, setIntervals] = useState<Record<PomodoroIntervals, number>>({ pomodoro: 50, shortBreak: 10, longBreak: 30 });
-  const [pomodoroCount, setPomodoroCount] = useState(0);
+export const App = () => (
+  <UIProvider>
+    <AppProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            path={Routes.HOME}
+            element={<Layout children={<Home />} />}
+          />
 
-  return (
-    <AppContext.Provider
-      value={{ currentInterval, setCurrentInterval, intervals, setIntervals, pomodoroCount, setPomodoroCount }}
-    >
-      <Layout />
-    </AppContext.Provider>
-  );
-};
+          <Route
+            path={Routes.LOGIN}
+            element={<Layout children={<Login />} />}
+          />
+
+          <Route
+            path={Routes.SIGN_UP}
+            element={<Layout children={<SignUp />} />}
+          />
+        </Switch>
+      </BrowserRouter>
+    </AppProvider>
+  </UIProvider>
+);

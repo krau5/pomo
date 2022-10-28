@@ -96,9 +96,9 @@ export const Timer = () => {
 
   return (
     <ProgressBar progress={progress}>
-      {isPaused && <Button color="primary" icon="play_circle_outline"  onClick={handlePlay} size="large" />}
+      {isPaused && <Button iconColor="primary" icon="play_circle_outline"  onClick={handlePlay} size="large" />}
 
-      {!isPaused && <Button color="primary" icon="pause_circle_outline" onClick={handlePause} size="large" />}
+      {!isPaused && <Button iconColor="primary" icon="pause_circle_outline" onClick={handlePause} size="large" />}
     </ProgressBar>
   );
 };
