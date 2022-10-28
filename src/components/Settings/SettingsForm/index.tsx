@@ -1,11 +1,11 @@
 import { ChangeEvent, useCallback, useContext, useMemo, useState } from 'react';
 import { AppContext } from 'app/AppContext';
-import { Section } from 'components/Section';
+import { Box } from 'components/Box';
 import { Typography } from 'components/Typography';
-import { NumericField } from 'components/NumericField';
+import { TextField } from 'components/TextField';
 import { Button } from 'components/Button';
 import { PomodoroIntervals } from 'types';
-import './Settings.css';
+import { styles } from './SettingsForm.styles';
 
 type Props = {
   onSubmit?: () => void;
@@ -32,28 +32,29 @@ export const SettingsForm = ({ onSubmit }: Props) => {
   }, [onSubmit, preferences]);
 
   const columns = useMemo(() => Object.entries(formFields).map(([title, intervalName]) => (
-    <div className="column" key={intervalName}>
+    <div css={styles.column} key={intervalName}>
       <Typography variant="caption">{title}</Typography>
 
-      <Section marginTop={8}>
-        <NumericField
+      <Box marginTop={2}>
+        <TextField
           name={intervalName}
           onChange={handleChange(intervalName)}
           value={preferences[intervalName]}
+          type="number"
         />
-      </Section>
+      </Box>
     </div>
   )), [handleChange, preferences]);
 
   return (
     <>
-      <Section marginBottom={8}>
+      <Box marginBottom={2}>
         <Typography variant="subtitle">Time (minutes)</Typography>
-      </Section>
+      </Box>
 
-      <div className="row">{columns}</div>
+      <div css={styles.row}>{columns}</div>
 
-      <div className="container">
+      <div css={styles.container}>
         <Button onClick={handleSubmit}>Apply</Button>
       </div>
     </>

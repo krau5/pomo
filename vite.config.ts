@@ -10,8 +10,11 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         app: path.resolve('src/app'),
-        assets: path.resolve('src/assets'),
         components: path.resolve('src/components'),
+        constants: path.resolve('src/constants'),
+        forms: path.resolve('src/forms'),
+        models: path.resolve('src/models'),
+        pages: path.resolve('src/pages'),
         types: path.resolve('src/types'),
       },
     },
@@ -24,6 +27,13 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.APP_ID': JSON.stringify(env.APP_ID),
       'import.meta.env.MEASUREMENT_ID': JSON.stringify(env.MEASUREMENT_ID),
     },
-    plugins: [react()],
+    plugins: [
+      react({
+        jsxImportSource: '@emotion/react',
+        babel: {
+          plugins: ['@emotion/babel-plugin'],
+        },
+      }),
+    ],
   };
 });

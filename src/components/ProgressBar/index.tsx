@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import './ProgressBar.css';
+import { styles } from './ProgressBar.styles';
 
 type Props = {
   progress: number;
@@ -15,17 +15,17 @@ export const ProgressBar: FunctionComponent<PropsWithChildren<Props>> = ({ child
   const strokeDasharray = 2 * 3.14 * radius;
 
   return (
-    <div className="progress-bar">
+    <div css={styles.progressBar}>
       <svg className="indicator" width={size} height={size}>
         <circle
-          className="track"
+          css={styles.circle()}
           cx={center}
           cy={center}
           r={radius}
         />
 
         <circle
-          className="indication"
+          css={styles.circle(true)}
           cx={center}
           cy={center}
           r={radius}
@@ -34,7 +34,7 @@ export const ProgressBar: FunctionComponent<PropsWithChildren<Props>> = ({ child
         />
       </svg>
 
-      <div className="content">{children}</div>
+      <div css={styles.content}>{children}</div>
     </div>
   );
 };

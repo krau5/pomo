@@ -2,6 +2,14 @@ import { useCallback, useState } from 'react';
 import { Button } from 'components/Button';
 import { Modal } from 'components/Modal';
 import { SettingsForm } from './SettingsForm';
+import { css } from '@emotion/react';
+
+const styles = {
+  container: css`
+    display: flex;
+    justify-content: center;
+  `,
+};
 
 export const Settings = () => {
   const [isOpened, setOpened] = useState(false);
@@ -15,7 +23,7 @@ export const Settings = () => {
   }, []);
 
   return (
-    <div className="settings">
+    <div css={styles.container}>
       <Button icon="settings" onClick={handleClick} />
 
       {isOpened && (

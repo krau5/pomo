@@ -16,6 +16,7 @@
     "jsx": "preserve",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "@emotion/react",
     "baseUrl": "./src",
     "types": ["vite/client", "node"]
   },

@@ -1,8 +1,9 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import './Typography.css';
+import { styles } from './Typography.styles';
+import { TypographyVariants } from './types';
 
 type TypographyProps = {
-  variant?: 'title' | 'subtitle' | 'caption';
+  variant?: TypographyVariants;
 }
 
 const TypographyTags: Record<NonNullable<TypographyProps['variant']>, keyof JSX.IntrinsicElements> = {
@@ -14,5 +15,5 @@ const TypographyTags: Record<NonNullable<TypographyProps['variant']>, keyof JSX.
 export const Typography: FunctionComponent<PropsWithChildren<TypographyProps>> = ({ children, variant = 'title' }) => {
   const TypographyTag = TypographyTags[variant];
 
-  return <TypographyTag className={variant}>{children}</TypographyTag>;
+  return <TypographyTag css={styles[variant]} className={variant}>{children}</TypographyTag>;
 };
