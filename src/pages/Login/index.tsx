@@ -38,14 +38,12 @@ export const Login = () => {
     <Form form={form} onSubmit={handleSubmit}>
       <FormTextField placeholder="Email address" name="email" />
 
-      <Box marginTop={4}>
+      <Box mt={4}>
         <FormTextField placeholder="Password" name="password" type="password" />
       </Box>
 
-      <Box marginTop={4}>
-        <Button fullWidth type="submit">
-          Login
-        </Button>
+      <Box mt={4}>
+        <Button type="submit">Login</Button>
       </Box>
     </Form>
   );

@@ -1,28 +1,12 @@
-import { ChangeEvent, HTMLProps } from 'react';
-import { styles } from './TextField.styles';
+import { TextFieldProps } from './types';
+import { NumericField } from './NumericField';
 
-export type TextFieldProps = {
-  name?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  value?: string | number;
-} & HTMLProps<HTMLInputElement>;
+export const TextField = (props: TextFieldProps) => {
+  if (props.type === 'number') {
+    return <NumericField {...props} />;
+  }
 
-export const TextField = ({
-  name,
-  onChange,
-  placeholder,
-  type = 'text',
-  value,
-  ...props
-}: TextFieldProps) => (
-  <input
-    css={styles.textField}
-    name={name}
-    onChange={onChange}
-    value={value}
-    type={type}
-    placeholder={placeholder}
-    {...props}
-  />
-);
+  return null;
+};
+
+export * from './types';

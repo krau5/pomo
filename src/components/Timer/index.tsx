@@ -1,7 +1,9 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { ProgressBar } from 'components/ProgressBar';
 import { Button } from 'components/Button';
 import { AppContext } from 'app/AppContext';
+import { Box } from 'components/Box';
+import { TimeLeft } from './TimeLeft';
+import { Settings } from './Settings';
 
 type WorkerEvent = {
   action: 'syncTimer' | 'timerHasFinished';
@@ -32,16 +34,6 @@ export const Timer = () => {
 
   const sound = useMemo(() => new Audio(soundURL.href), []);
 
-  const handlePlay = useCallback(() => {
-    setIsPaused(false);
-    worker.postMessage({ action: 'start', duration: currentIntervalTime });
-  }, [currentIntervalTime]);
-
-  const handlePause = useCallback(() => {
-    setIsPaused(true);
-    worker.postMessage({ action: 'pause' });
-  }, []);
-
   const getNextInterval = useCallback(() => {
     if (currentInterval === 'longBreak' || currentInterval === 'shortBreak') {
       return 'pomodoro';
@@ -49,6 +41,44 @@ export const Timer = () => {
 
     return 'shortBreak';
   }, [currentInterval]);
+
+  const handleToggle = useCallback(() => {
+    setIsPaused((previousIsPaused) => {
+      if (!previousIsPaused) {
+        worker.postMessage({ action: 'pause' });
+      } else {
+        worker.postMessage({
+          action: 'start',
+          duration: currentIntervalTime,
+          initialCount: timer,
+        });
+      }
+
+      return !previousIsPaused;
+    });
+  }, [currentIntervalTime, timer]);
+
+  const handleSkipInterval = useCallback(() => {
+    if (
+      currentInterval === 'pomodoro' &&
+      pomodoroCount === pomodoroInSession - 1
+    ) {
+      setPomodoroCount(0);
+      setCurrentInterval('longBreak');
+      return;
+    } else if (currentInterval === 'pomodoro') {
+      setPomodoroCount(pomodoroCount + 1);
+    }
+
+    setCurrentInterval(getNextInterval());
+    setTimer(0);
+  }, [
+    currentInterval,
+    getNextInterval,
+    pomodoroCount,
+    setCurrentInterval,
+    setPomodoroCount,
+  ]);
 
   const processWorkerEvent = useCallback(
     (event: MessageEvent<WorkerEvent>) => {
@@ -90,14 +120,6 @@ export const Timer = () => {
     ]
   );
 
-  const progress = useMemo(() => {
-    if (timer > currentIntervalTime) {
-      return 100;
-    }
-
-    return (timer / currentIntervalTime) * 100;
-  }, [currentIntervalTime, timer]);
-
   useEffect(() => {
     worker.onmessage = (event: MessageEvent<WorkerEvent>) => {
       processWorkerEvent(event);
@@ -110,31 +132,36 @@ export const Timer = () => {
   }, [intervals]);
 
   useEffect(() => {
-    if (!isPaused) {
+    if (!isPaused && timer === 0) {
       worker.postMessage({ action: 'reset' });
-      worker.postMessage({ action: 'start', duration: currentIntervalTime });
+      worker.postMessage({
+        action: 'start',
+        duration: currentIntervalTime,
+      });
     }
-  }, [currentIntervalTime, isPaused]);
+  }, [currentIntervalTime, isPaused, timer]);
 
   return (
-    <ProgressBar progress={progress}>
-      {isPaused && (
-        <Button
-          iconColor="primary"
-          icon="play_circle_outline"
-          onClick={handlePlay}
-          size="large"
-        />
-      )}
+    <Box display="flex" alignItems="center" flexDirection="column">
+      <TimeLeft isPaused={isPaused} time={timer} />
 
-      {!isPaused && (
+      <Box display="flex" alignItems="center" mt={8}>
+        <Settings />
+
+        <Box px={4}>
+          <Button
+            icon={isPaused ? 'play' : 'pause'}
+            size="large"
+            onClick={handleToggle}
+          />
+        </Box>
+
         <Button
-          iconColor="primary"
-          icon="pause_circle_outline"
-          onClick={handlePause}
-          size="large"
+          icon="forward"
+          onClick={handleSkipInterval}
+          variant="secondary"
         />
-      )}
-    </ProgressBar>
+      </Box>
+    </Box>
   );
 };

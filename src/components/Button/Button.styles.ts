@@ -1,42 +1,25 @@
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { ButtonProps } from './types';
-import { Theme } from 'types';
+import { Theme, ThemeColorName } from 'types';
 
-const buttonVariants: Record<
-  NonNullable<ButtonProps['variant']> | 'icon',
-  (size: ButtonProps['size']) => (theme: Theme) => SerializedStyles
+const background: Record<'primary' | 'secondary', ThemeColorName> = {
+  primary: 'primary',
+  secondary: 'primaryLight',
+};
+
+const padding: Record<
+  NonNullable<ButtonProps['size']>,
+  (theme: Theme) => string
 > = {
-  primary: () => (theme) =>
-    css`
-      padding: ${theme.sizing(0, 8)};
-      max-height: ${theme.sizing(12)};
-      height: ${theme.sizing(12)};
-      color: ${theme.color.lightGray};
-      background: ${theme.color.primary};
-      border-radius: ${theme.sizing(2)};
-      font-weight: 700;
-      font-size: ${theme.sizing(4)};
-    `,
-  light: () => (theme: Theme) =>
-    css`
-      font-weight: 700;
-      font-size: ${theme.sizing(3)};
-      color: ${theme.color.darkGray};
-    `,
-  icon: (size) => (theme) =>
-    css`
-      & > span {
-        font-size: ${size === 'large' ? theme.sizing(16) : theme.sizing(8)};
-      }
-    `,
+  large: (theme) => theme.sizing(8, 12),
+  medium: (theme) => theme.sizing(6),
+  small: (theme) => theme.sizing(2),
 };
 
 export const styles = {
   button:
     (
-      icon: ButtonProps['icon'],
-      fullWidth: ButtonProps['fullWidth'],
-      size: ButtonProps['size'],
+      size: NonNullable<ButtonProps['size']>,
       variant: NonNullable<ButtonProps['variant']>
     ) =>
     (theme: Theme) =>
@@ -44,13 +27,10 @@ export const styles = {
         border: none;
         outline: none;
         cursor: pointer;
-        background: transparent;
-
-        ${fullWidth && 'width: 100%'};
-        ${buttonVariants[icon ? 'icon' : variant](size)(theme)}
+        background: ${variant === 'light'
+          ? 'inherit'
+          : theme.color[background[variant]]};
+        padding: ${padding[size](theme)};
+        border-radius: ${theme.sizing(8)};
       `,
-  icon: (color: NonNullable<ButtonProps['iconColor']>) => (theme: Theme) =>
-    css`
-      color: ${color !== 'inherit' ? theme.color[color] : 'inherit'};
-    `,
 };

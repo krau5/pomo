@@ -1,6 +1,7 @@
 export type PomodoroIntervals = 'pomodoro' | 'shortBreak' | 'longBreak';
 
 export type ThemeColorName =
+  | 'primaryLight'
   | 'primary'
   | 'primaryDark'
   | 'defaultText'
@@ -10,10 +11,12 @@ export type ThemeColorName =
   | 'darkGray'
   | 'white'
   | 'black'
+  | 'background'
   | 'transparentBlack';
 
 export type StaticThemeSettings = {
   color: Record<ThemeColorName, string>;
+  font: string;
   unit: number;
 };
 

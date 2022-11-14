@@ -1,11 +1,13 @@
 import { css } from '@emotion/react';
 import { Theme } from 'types';
+import { font } from './Font.styles';
 
 export const styles = {
   global: (theme: Theme) => css`
+    ${font()};
+
     * {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
+      font-family: ${theme.font};
       color: ${theme.color.defaultText};
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -18,7 +20,7 @@ export const styles = {
     body {
       width: 100%;
       height: 100%;
-      background: ${theme.color.lightGray};
+      background: ${theme.color.background};
     }
 
     #root {

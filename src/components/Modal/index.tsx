@@ -12,6 +12,14 @@ const Overlay = ({ children }: PropsWithChildren) => (
   <div css={styles.overlay}>{children}</div>
 );
 
+const ModalHeader = ({ children }: PropsWithChildren) => (
+  <header css={styles.header}>{children}</header>
+);
+
+const ModalContent = ({ children }: PropsWithChildren) => (
+  <div css={styles.content}>{children}</div>
+);
+
 export const Modal = ({
   children,
   onClose,
@@ -19,13 +27,19 @@ export const Modal = ({
 }: PropsWithChildren<ModalProps>) => (
   <Overlay>
     <div css={styles.modal}>
-      <header css={styles.header}>
-        <Typography>{title}</Typography>
+      <ModalHeader>
+        <Typography variant="subtitle1">{title}</Typography>
 
-        <Button icon="close" onClick={onClose} />
-      </header>
+        <Button
+          icon="close"
+          iconSize="medium"
+          onClick={onClose}
+          size="small"
+          variant="light"
+        />
+      </ModalHeader>
 
-      <div css={styles.content}>{children}</div>
+      <ModalContent>{children}</ModalContent>
     </div>
   </Overlay>
 );
