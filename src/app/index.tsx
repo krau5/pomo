@@ -24,8 +24,8 @@ const SignUp = lazy(() =>
 );
 
 export const App = () => (
-  <UIProvider>
-    <AppProvider>
+  <AppProvider>
+    <UIProvider>
       <BrowserRouter>
         <Switch>
           <Route path={Routes.HOME} element={<Layout children={<Home />} />} />
@@ -41,6 +41,6 @@ export const App = () => (
           />
         </Switch>
       </BrowserRouter>
-    </AppProvider>
-  </UIProvider>
+    </UIProvider>
+  </AppProvider>
 );

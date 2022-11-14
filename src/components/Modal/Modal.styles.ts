@@ -11,17 +11,17 @@ export const styles = {
     position: fixed;
     top: 0;
     left: 0;
-    background: ${theme.color.transparentBlack};
+    background: rgba(0, 0, 0, 15%);
     padding-top: ${theme.sizing(49)};
   `,
   modal: (theme: Theme) => css`
-    padding: ${theme.sizing(6)};
     margin: ${theme.sizing(0, 2)};
     border-radius: ${theme.sizing(4)};
-    background: ${theme.color.lightGray};
+    background: ${theme.color.background};
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.039), 0 5.5px 16px rgba(0, 0, 0, 0.19);
 
     @media screen and (min-width: 768px) {
-      min-width: ${theme.sizing(120)};
+      min-width: ${theme.sizing(100)};
       margin: 0 auto;
     }
   `,
@@ -29,21 +29,9 @@ export const styles = {
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding-bottom: ${theme.sizing(6)};
-    font-size: ${theme.sizing(4)};
-    font-weight: 700;
-
-    &:after {
-      content: '';
-      position: absolute;
-      width: calc(100% + ${theme.sizing(12)});
-      height: 1px;
-      background: ${theme.color.darkGray};
-      bottom: 0;
-      left: ${theme.sizing(-6)};
-    }
+    padding: ${theme.sizing(6)};
   `,
   content: (theme: Theme) => css`
-    padding-top: ${theme.sizing(6)};
+    padding-bottom: ${theme.sizing(4)};
   `,
 };

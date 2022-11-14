@@ -48,15 +48,15 @@ export const SignUp = () => {
     <Form form={form} onSubmit={handleSubmit}>
       <FormTextField name="username" placeholder="Username" />
 
-      <Box marginTop={4}>
+      <Box mt={4}>
         <FormTextField name="email" placeholder="Email address" />
       </Box>
 
-      <Box marginTop={4}>
+      <Box mt={4}>
         <FormTextField name="password" placeholder="Password" type="password" />
       </Box>
 
-      <Box marginTop={4}>
+      <Box mt={4}>
         <FormTextField
           name="repeatPassword"
           placeholder="Repeat password"
@@ -64,10 +64,8 @@ export const SignUp = () => {
         />
       </Box>
 
-      <Box marginTop={4}>
-        <Button fullWidth type="submit">
-          Sign up
-        </Button>
+      <Box mt={4}>
+        <Button type="submit">Sign up</Button>
       </Box>
     </Form>
   );

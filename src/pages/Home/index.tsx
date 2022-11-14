@@ -1,30 +1,29 @@
 import { useContext } from 'react';
 import { Box } from 'components/Box';
-import { Tabs } from 'components/Tabs';
 import { Timer } from 'components/Timer';
-import { Settings } from 'components/Settings';
 import { AppContext } from 'app/AppContext';
+import { Chip } from 'components/Chip';
+import { PomodoroIntervals } from 'types';
+
+const chipLabels: Record<PomodoroIntervals, string> = {
+  pomodoro: 'Focus',
+  shortBreak: 'Short Break',
+  longBreak: 'Long Break',
+};
 
 export const Home = () => {
   const { currentInterval } = useContext(AppContext);
 
+  const label = chipLabels[currentInterval];
+
   return (
     <>
-      <Tabs
-        tabs={[
-          { id: 'pomodoro', name: 'pomodoro' },
-          { id: 'shortBreak', name: 'short break' },
-          { id: 'longBreak', name: 'long break' },
-        ]}
-        activeTab={currentInterval}
-      />
+      <Chip icon={currentInterval === 'pomodoro' ? 'focus' : 'break'}>
+        {label}
+      </Chip>
 
-      <Box marginTop={8}>
+      <Box mt={8}>
         <Timer />
-      </Box>
-
-      <Box marginTop={4}>
-        <Settings />
       </Box>
     </>
   );

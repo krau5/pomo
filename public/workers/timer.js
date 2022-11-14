@@ -1,12 +1,13 @@
 const isNumber = (value) => typeof value === 'number' && !isNaN(value);
 
 class Timer {
-  constructor () {
+  constructor() {
     this.count = 0;
   }
 
-  start(duration) {
+  start(duration, initialCount) {
     this.duration = duration;
+    this.count = isNumber(initialCount) ? initialCount : 0;
 
     this.interval = setInterval(() => {
       if (this.count < this.duration) {
@@ -36,17 +37,20 @@ class Timer {
       this.count = count;
     }
 
-    self.postMessage({ action: 'syncTimer', count: isNumber(count) ? count : this.count });
+    self.postMessage({
+      action: 'syncTimer',
+      count: this.count,
+    });
   }
 }
 
 const timer = new Timer();
 
 self.onmessage = (event) => {
-  const { action, duration } = event.data;
+  const { action, duration, initialCount } = event.data;
 
   if (action === 'start' && isNumber(duration)) {
-    timer.start(duration);
+    timer.start(duration, initialCount);
   }
 
   if (action === 'pause') {

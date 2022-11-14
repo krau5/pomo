@@ -1,11 +1,13 @@
 import { ThemeColorName } from 'types';
+import { IconProps } from 'components/Icon';
 
 export type ButtonProps = {
   fullWidth?: boolean;
-  icon?: string;
+  icon?: IconProps['name'];
   iconColor?: ThemeColorName | 'inherit';
+  iconSize?: IconProps['size'];
   onClick?: () => void;
-  size?: 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   type?: 'button' | 'submit';
-  variant?: 'primary' | 'light';
+  variant?: 'primary' | 'secondary' | 'light';
 };
