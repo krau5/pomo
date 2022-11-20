@@ -2,8 +2,9 @@ import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Button } from 'components/Button';
 import { AppContext } from 'app/AppContext';
 import { Box } from 'components/Box';
-import { TimeLeft } from './TimeLeft';
 import { Settings } from './Settings';
+import { Typography } from 'components/Typography';
+import { PomodoroIntervals } from 'types';
 
 type WorkerEvent = {
   action: 'syncTimer' | 'timerHasFinished';
@@ -13,6 +14,8 @@ type WorkerEvent = {
 const worker = new Worker('/workers/timer.js');
 
 const soundURL = new URL('/sounds/ring.mp3', import.meta.url);
+
+const link = document.getElementById('favicon') as HTMLLinkElement;
 
 const pomodoroInSession = 4;
 
@@ -31,16 +34,30 @@ export const Timer = () => {
 
   const [timer, setTimer] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
+  const [wasOnceStarted, setWasOnceStarted] = useState(false);
 
   const sound = useMemo(() => new Audio(soundURL.href), []);
+
+  const updateFavicon = useCallback((interval: PomodoroIntervals) => {
+    if (link) {
+      link.href = `/images/favicon/${interval}.svg`;
+    }
+  }, []);
 
   const getNextInterval = useCallback(() => {
     if (currentInterval === 'longBreak' || currentInterval === 'shortBreak') {
       return 'pomodoro';
     }
 
-    return 'shortBreak';
-  }, [currentInterval]);
+    if (
+      currentInterval === 'pomodoro' &&
+      pomodoroCount !== pomodoroInSession - 1
+    ) {
+      return 'shortBreak';
+    }
+
+    return 'longBreak';
+  }, [currentInterval, pomodoroCount]);
 
   const handleToggle = useCallback(() => {
     setIsPaused((previousIsPaused) => {
@@ -70,6 +87,9 @@ export const Timer = () => {
       setPomodoroCount(pomodoroCount + 1);
     }
 
+    const nextInterval = getNextInterval();
+
+    updateFavicon(nextInterval);
     setCurrentInterval(getNextInterval());
     setTimer(0);
   }, [
@@ -78,6 +98,7 @@ export const Timer = () => {
     pomodoroCount,
     setCurrentInterval,
     setPomodoroCount,
+    updateFavicon,
   ]);
 
   const processWorkerEvent = useCallback(
@@ -92,22 +113,18 @@ export const Timer = () => {
       if (action === 'timerHasFinished') {
         sound.play();
 
-        setTimer(0);
-
-        if (
-          currentInterval === 'pomodoro' &&
-          pomodoroCount === pomodoroInSession - 1
-        ) {
-          setCurrentInterval('longBreak');
-          setPomodoroCount(0);
-          return;
-        }
+        const nextInterval = getNextInterval();
 
         if (currentInterval === 'pomodoro') {
-          setPomodoroCount(pomodoroCount + 1);
+          if (pomodoroCount === pomodoroInSession - 1) {
+            setPomodoroCount(0);
+          } else {
+            setPomodoroCount(pomodoroCount + 1);
+          }
         }
 
-        setCurrentInterval(getNextInterval());
+        updateFavicon(nextInterval);
+        setCurrentInterval(nextInterval);
       }
     },
     [
@@ -117,8 +134,19 @@ export const Timer = () => {
       setCurrentInterval,
       setPomodoroCount,
       sound,
+      updateFavicon,
     ]
   );
+
+  const { minutes, seconds } = useMemo(() => {
+    const minutes = Math.floor((currentIntervalTime - timer) / 60);
+    const formattedMinutes = minutes >= 10 ? `${minutes}` : `0${minutes}`;
+
+    const seconds = (currentIntervalTime - timer) % 60;
+    const formattedSeconds = seconds >= 10 ? `${seconds}` : `0${seconds}`;
+
+    return { minutes: formattedMinutes, seconds: formattedSeconds };
+  }, [currentIntervalTime, timer]);
 
   useEffect(() => {
     worker.onmessage = (event: MessageEvent<WorkerEvent>) => {
@@ -141,9 +169,37 @@ export const Timer = () => {
     }
   }, [currentIntervalTime, isPaused, timer]);
 
+  useEffect(() => {
+    if (!isPaused && !wasOnceStarted) {
+      setWasOnceStarted(true);
+    }
+  }, [isPaused, wasOnceStarted]);
+
+  useEffect(() => {
+    if (wasOnceStarted) {
+      const title = `${minutes}:${seconds} - Time`;
+
+      if (currentInterval === 'pomodoro') {
+        document.title = `${title} to focus`;
+      } else {
+        document.title = `${title} for a break`;
+      }
+    }
+  }, [currentInterval, minutes, seconds, wasOnceStarted]);
+
+  useEffect(() => {}, [updateFavicon]);
+
   return (
     <Box display="flex" alignItems="center" flexDirection="column">
-      <TimeLeft isPaused={isPaused} time={timer} />
+      <Typography
+        color="primaryDark"
+        notSelectable
+        variant={isPaused ? 'h1' : 'h2'}
+      >
+        {minutes}
+        <br />
+        {seconds}
+      </Typography>
 
       <Box display="flex" alignItems="center" mt={8}>
         <Settings />
