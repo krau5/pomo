@@ -11,7 +11,7 @@ export const styles = {
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 15%);
+    background: ${theme.color.contrastingTransparent};
     padding-top: ${theme.sizing(49)};
   `,
   modal: (theme: Theme) => css`

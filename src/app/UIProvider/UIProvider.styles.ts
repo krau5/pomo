@@ -8,7 +8,7 @@ export const styles = {
 
     * {
       font-family: ${theme.font};
-      color: ${theme.color.defaultText};
+      color: ${theme.color.primaryDark};
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       box-sizing: border-box;

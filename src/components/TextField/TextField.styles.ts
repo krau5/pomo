@@ -8,7 +8,7 @@ export const styles = {
       height: ${theme.sizing(10)};
       background: inherit;
       outline: none;
-      border: 1px solid ${theme.color.transparentBlack};
+      border: 1px solid ${theme.color.contrastingTransparent};
       border-radius: ${theme.sizing(2)};
       padding: ${theme.sizing(2, 4)};
 

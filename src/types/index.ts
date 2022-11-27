@@ -4,15 +4,8 @@ export type ThemeColorName =
   | 'primaryLight'
   | 'primary'
   | 'primaryDark'
-  | 'defaultText'
-  | 'subtleText'
-  | 'gray'
-  | 'lightGray'
-  | 'darkGray'
-  | 'white'
-  | 'black'
   | 'background'
-  | 'transparentBlack';
+  | 'contrastingTransparent';
 
 export type StaticThemeSettings = {
   color: Record<ThemeColorName, string>;

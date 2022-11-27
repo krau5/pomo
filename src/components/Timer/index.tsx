@@ -26,6 +26,7 @@ export const Timer = () => {
     intervals,
     pomodoroCount,
     setPomodoroCount,
+    theme,
   } = useContext(AppContext);
   const currentIntervalTime = useMemo(
     () => intervals[currentInterval] * 60,
@@ -38,11 +39,14 @@ export const Timer = () => {
 
   const sound = useMemo(() => new Audio(soundURL.href), []);
 
-  const updateFavicon = useCallback((interval: PomodoroIntervals) => {
-    if (link) {
-      link.href = `/images/favicon/${interval}.svg`;
-    }
-  }, []);
+  const updateFavicon = useCallback(
+    (interval: PomodoroIntervals) => {
+      if (link) {
+        link.href = `/images/favicon/${interval}-${theme}.svg`;
+      }
+    },
+    [theme]
+  );
 
   const getNextInterval = useCallback(() => {
     if (currentInterval === 'longBreak' || currentInterval === 'shortBreak') {
@@ -186,8 +190,6 @@ export const Timer = () => {
       }
     }
   }, [currentInterval, minutes, seconds, wasOnceStarted]);
-
-  useEffect(() => {}, [updateFavicon]);
 
   return (
     <Box display="flex" alignItems="center" flexDirection="column">

@@ -13,6 +13,7 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
     }
   );
   const [pomodoroCount, setPomodoroCount] = useState(0);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   return (
     <AppContext.Provider
@@ -23,6 +24,8 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
         setIntervals,
         pomodoroCount,
         setPomodoroCount,
+        theme,
+        setTheme,
       }}
     >
       {children}

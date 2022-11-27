@@ -9,9 +9,9 @@ export type ChipProps = {
 
 export const Chip = ({ children, icon }: PropsWithChildren<ChipProps>) => (
   <div css={styles.container}>
-    <Icon name={icon} />
+    <Icon color="primaryDark" name={icon} />
 
-    <Typography nowrap variant="subtitle2">
+    <Typography color="primaryDark" nowrap variant="subtitle2">
       {children}
     </Typography>
   </div>

@@ -6,7 +6,7 @@ import { AppContext } from 'app/AppContext';
 import { PomodoroIntervals } from 'types';
 
 export const Settings = () => {
-  const { intervals, setIntervals } = useContext(AppContext);
+  const { intervals, setIntervals, setTheme } = useContext(AppContext);
 
   const [isOpened, setIsOpened] = useState(false);
   const [preferences, setPreferences] = useState(intervals);
@@ -20,7 +20,7 @@ export const Settings = () => {
     setIsOpened(false);
   }, [preferences, setIntervals]);
 
-  const handleChange = useCallback(
+  const handleIntervalChange = useCallback(
     (interval: PomodoroIntervals) => (event: ChangeEvent<HTMLInputElement>) => {
       setPreferences((previousPreferences) => ({
         ...previousPreferences,
@@ -30,13 +30,29 @@ export const Settings = () => {
     []
   );
 
+  const handleThemeChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (event.target.checked) {
+        setTheme('dark');
+        return;
+      }
+
+      setTheme('light');
+    },
+    [setTheme]
+  );
+
   return (
     <>
       <Button icon="dots" onClick={handleOpen} variant="secondary" />
 
       {isOpened && (
         <Modal onClose={handleClose} title="Settings">
-          <SettingsForm value={preferences} onChange={handleChange} />
+          <SettingsForm
+            value={preferences}
+            onIntervalChange={handleIntervalChange}
+            onThemeChange={handleThemeChange}
+          />
         </Modal>
       )}
     </>

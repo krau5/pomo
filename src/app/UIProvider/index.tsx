@@ -27,44 +27,76 @@ const defaultThemeSettings = (
   unit: 4,
 });
 
-const common = {
-  defaultText: '#444444',
-  subtleText: '#777777',
-  gray: '#EDEDED',
+const transparentBlack = '#00000026';
+const transparentWhite = '#FFFFFF26';
+
+const common = (theme: 'light' | 'dark' = 'light') => ({
   lightGray: '#FAFAFA',
   darkGray: '#C4C4C4',
-  white: '#FFFFFF',
-  black: '#000000',
-  transparentBlack: '#00000026',
-};
+  contrastingTransparent:
+    theme === 'light' ? transparentBlack : transparentWhite,
+});
 
-const themes: Record<PomodoroIntervals, StaticThemeSettings['color']> = {
+const themes: Record<
+  PomodoroIntervals,
+  Record<'light' | 'dark', StaticThemeSettings['color']>
+> = {
   pomodoro: {
-    ...common,
-    primaryLight: '#FF4C4C26',
-    primary: '#FF4C4CB5',
-    primaryDark: '#471515',
-    background: '#FFF2F2',
+    light: {
+      ...common(),
+      primaryLight: '#FF4C4C26',
+      primary: '#FF4C4CB5',
+      primaryDark: '#471515',
+      background: '#FFF2F2',
+    },
+    dark: {
+      ...common('dark'),
+      primaryLight: '#FF4C4C26',
+      primary: '#FF4C4CB5',
+      primaryDark: '#FFF2F2',
+      background: '#0D0404',
+    },
   },
   shortBreak: {
-    ...common,
-    primaryLight: '#4DDA6E26',
-    primary: '#4DDA6E9E',
-    primaryDark: '#14401D',
-    background: '#F2FFF5',
+    light: {
+      ...common(),
+      primaryLight: '#4DDA6E26',
+      primary: '#4DDA6E9E',
+      primaryDark: '#14401D',
+      background: '#F2FFF5',
+    },
+    dark: {
+      ...common('dark'),
+      primaryLight: '#4DDA6E26',
+      primary: '#4DDA6E9E',
+      primaryDark: '#F2FFF5',
+      background: '#040D06',
+    },
   },
   longBreak: {
-    ...common,
-    primaryLight: '#4CACFF26',
-    primary: '#4CACFF9E',
-    primaryDark: '#153047',
-    background: '#F2F9FF',
+    light: {
+      ...common(),
+      primaryLight: '#4CACFF26',
+      primary: '#4CACFF9E',
+      primaryDark: '#153047',
+      background: '#F2F9FF',
+    },
+    dark: {
+      ...common('dark'),
+      primaryLight: '#4CACFF26',
+      primary: '#4CACFF9E',
+      primaryDark: '#F2F9FF',
+      background: '#04090D',
+    },
   },
 };
 
 export const UIProvider = ({ children }: PropsWithChildren) => {
-  const { currentInterval } = useContext(AppContext);
-  const theme: Theme = makeTheme(defaultThemeSettings(themes[currentInterval]));
+  const { currentInterval, theme: uiTheme } = useContext(AppContext);
+
+  const theme: Theme = makeTheme(
+    defaultThemeSettings(themes[currentInterval][uiTheme])
+  );
 
   return (
     <>

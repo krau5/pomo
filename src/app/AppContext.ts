@@ -12,6 +12,8 @@ type AppContextValue = {
   setIntervals: Dispatch<SetStateAction<Record<PomodoroIntervals, number>>>;
   pomodoroCount: number;
   setPomodoroCount: Dispatch<SetStateAction<number>>;
+  theme: 'light' | 'dark';
+  setTheme: Dispatch<SetStateAction<'light' | 'dark'>>;
 };
 
 export const AppContext = createContext<AppContextValue>({
@@ -21,4 +23,6 @@ export const AppContext = createContext<AppContextValue>({
   setIntervals: () => {},
   pomodoroCount: 0,
   setPomodoroCount: () => {},
+  theme: 'light',
+  setTheme: () => {},
 });
