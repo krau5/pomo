@@ -1,27 +1,42 @@
-import { ChangeEvent, useMemo } from 'react';
+import { ChangeEvent, useContext, useMemo } from 'react';
 import { TextField } from 'components/TextField';
 import { PomodoroIntervals } from 'types';
 import { Box } from 'components/Box';
 import { Typography } from 'components/Typography';
+import { Switch } from 'components/Switch';
+import { AppContext } from 'app/AppContext';
 
 type Props = {
   value: Record<PomodoroIntervals, number>;
-  onChange: (
+  onIntervalChange: (
     interval: PomodoroIntervals
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
+  onThemeChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const SettingsForm = ({
   value: preferences,
-  onChange: handleChange,
+  onIntervalChange: handleIntervalChange,
+  onThemeChange: handleThemeChange,
 }: Props) => {
+  const { theme } = useContext(AppContext);
+
   const settings = useMemo(
     () => [
+      {
+        text: 'Dark mode',
+        component: (
+          <Switch
+            defaultChecked={theme === 'dark'}
+            onChange={handleThemeChange}
+          />
+        ),
+      },
       {
         text: 'Focus length',
         component: (
           <TextField
-            onChange={handleChange('pomodoro')}
+            onChange={handleIntervalChange('pomodoro')}
             value={preferences['pomodoro']}
             min={1}
             max={99}
@@ -33,7 +48,7 @@ export const SettingsForm = ({
         text: 'Short break length',
         component: (
           <TextField
-            onChange={handleChange('shortBreak')}
+            onChange={handleIntervalChange('shortBreak')}
             value={preferences['shortBreak']}
             min={1}
             max={99}
@@ -45,7 +60,7 @@ export const SettingsForm = ({
         text: 'Long break length',
         component: (
           <TextField
-            onChange={handleChange('longBreak')}
+            onChange={handleIntervalChange('longBreak')}
             value={preferences['longBreak']}
             min={1}
             max={99}
@@ -54,7 +69,7 @@ export const SettingsForm = ({
         ),
       },
     ],
-    [handleChange, preferences]
+    [handleIntervalChange, handleThemeChange, preferences, theme]
   );
 
   return (

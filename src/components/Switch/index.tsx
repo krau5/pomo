@@ -2,8 +2,13 @@ import { TextFieldProps } from 'components/TextField';
 import { ChangeEvent, useCallback, useState } from 'react';
 import { styles } from './Switch.styles';
 
-export const Switch = ({ onChange, name, ...props }: TextFieldProps) => {
-  const [isChecked, setIsChecked] = useState(false);
+export const Switch = ({
+  defaultChecked = false,
+  onChange,
+  name,
+  ...props
+}: TextFieldProps) => {
+  const [isChecked, setIsChecked] = useState(defaultChecked);
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -12,8 +17,6 @@ export const Switch = ({ onChange, name, ...props }: TextFieldProps) => {
     },
     [onChange]
   );
-
-  console.log('Checked:', isChecked);
 
   return (
     <>

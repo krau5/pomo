@@ -11,7 +11,7 @@ export const styles = {
       border-radius: ${theme.sizing(25)};
       background: ${isChecked
         ? theme.color.primary
-        : theme.color.transparentBlack};
+        : theme.color.contrastingTransparent};
       transition: 300ms ease-in-out;
     `,
   indicator: (isChecked: boolean) => (theme: Theme) =>

@@ -1,12 +1,13 @@
 import { Theme, ThemeColorName } from 'types';
-import coffeeBreak from '/images/icons/break.svg';
-import close from '/images/icons/cross.svg';
-import dots from '/images/icons/dots.svg';
-import focus from '/images/icons/focus.svg';
-import forward from '/images/icons/forward.svg';
-import pause from '/images/icons/pause.svg';
-import play from '/images/icons/play.svg';
+import { Break } from './static/Break';
+import { Close } from './static/Close';
+import { Dots } from './static/Dots';
+import { Focus } from './static/Focus';
+import { Forward } from './static/Forward';
+import { Pause } from './static/Pause';
+import { Play } from './static/Play';
 import { css } from '@emotion/react';
+import { ReactNode } from 'react';
 
 const iconNames = [
   'break',
@@ -26,14 +27,14 @@ export type IconProps = {
   size?: 'small' | 'medium' | 'large';
 };
 
-const iconSource: Record<IconNames, string> = {
-  break: coffeeBreak,
-  close,
-  dots,
-  focus,
-  forward,
-  pause,
-  play,
+const icons: Record<IconNames, ReactNode> = {
+  break: <Break />,
+  close: <Close />,
+  dots: <Dots />,
+  focus: <Focus />,
+  forward: <Forward />,
+  pause: <Pause />,
+  play: <Play />,
 };
 
 const sizeMap: Record<
@@ -49,17 +50,22 @@ const styles =
   (color: IconProps['color'], size: NonNullable<IconProps['size']>) =>
   (theme: Theme) =>
     css`
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       width: ${sizeMap[size](theme)};
-      height: auto;
-      ${color && `color: ${color === 'inherit' ? color : theme.color[color]}`};
+      height: ${sizeMap[size](theme)};
+
+      & > svg {
+        ${color && `fill: ${color === 'inherit' ? color : theme.color[color]}`};
+        width: ${sizeMap[size](theme)};
+        height: auto;
+      }
     `;
 
 export const Icon = ({ color, name, size = 'large' }: IconProps) => (
-  <img
-    className="icon"
-    css={styles(color, size)}
-    src={iconSource[name]}
-    alt={name}
-  />
+  <span className="icon" css={styles(color, size)}>
+    {icons[name]}
+  </span>
 );
