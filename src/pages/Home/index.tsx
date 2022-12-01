@@ -1,9 +1,9 @@
-import { useContext } from 'react';
 import { Box } from 'components/Box';
 import { Timer } from 'components/Timer';
-import { AppContext } from 'app/AppContext';
 import { Chip } from 'components/Chip';
 import { PomodoroIntervals } from 'types';
+import { useAppSelector } from 'store';
+import { selectCurrentInterval } from 'store/intervals';
 
 const chipLabels: Record<PomodoroIntervals, string> = {
   pomodoro: 'Focus',
@@ -12,7 +12,7 @@ const chipLabels: Record<PomodoroIntervals, string> = {
 };
 
 export const Home = () => {
-  const { currentInterval } = useContext(AppContext);
+  const currentInterval = useAppSelector(selectCurrentInterval);
 
   const label = chipLabels[currentInterval];
 

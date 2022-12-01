@@ -1,10 +1,11 @@
-import { ChangeEvent, useContext, useMemo } from 'react';
+import { ChangeEvent, useMemo } from 'react';
 import { TextField } from 'components/TextField';
 import { PomodoroIntervals } from 'types';
 import { Box } from 'components/Box';
 import { Typography } from 'components/Typography';
 import { Switch } from 'components/Switch';
-import { AppContext } from 'app/AppContext';
+import { useAppSelector } from 'store';
+import { selectTheme } from 'store/theme';
 
 type Props = {
   value: Record<PomodoroIntervals, number>;
@@ -19,7 +20,7 @@ export const SettingsForm = ({
   onIntervalChange: handleIntervalChange,
   onThemeChange: handleThemeChange,
 }: Props) => {
-  const { theme } = useContext(AppContext);
+  const theme = useAppSelector(selectTheme);
 
   const settings = useMemo(
     () => [
