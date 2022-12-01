@@ -1,11 +1,14 @@
-import { PropsWithChildren, useContext, useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { Box } from 'components/Box';
-import { AppContext } from 'app/AppContext';
+import { useAppSelector } from 'store';
+import { selectCurrentInterval } from 'store/intervals';
+import { selectTheme } from 'store/theme';
 
 const link = document.getElementById('favicon') as HTMLLinkElement;
 
 export const Layout = ({ children }: PropsWithChildren) => {
-  const { currentInterval, theme } = useContext(AppContext);
+  const currentInterval = useAppSelector(selectCurrentInterval);
+  const theme = useAppSelector(selectTheme);
 
   useEffect(() => {
     if (link) {

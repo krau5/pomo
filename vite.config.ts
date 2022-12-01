@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
         constants: path.resolve('src/constants'),
         models: path.resolve('src/models'),
         pages: path.resolve('src/pages'),
+        store: path.resolve('src/store'),
         types: path.resolve('src/types'),
       },
     },

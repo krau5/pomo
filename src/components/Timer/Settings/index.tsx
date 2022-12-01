@@ -1,12 +1,16 @@
-import { ChangeEvent, useCallback, useContext, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 import { Button } from 'components/Button';
 import { Modal } from 'components/Modal';
 import { SettingsForm } from './SettingsForm';
-import { AppContext } from 'app/AppContext';
 import { PomodoroIntervals } from 'types';
+import { disableDarkMode, enableDarkMode } from 'store/theme';
+import { useAppDispatch, useAppSelector } from 'store';
+import { selectIntervals, setIntervals } from 'store/intervals';
 
 export const Settings = () => {
-  const { intervals, setIntervals, setTheme } = useContext(AppContext);
+  const dispatch = useAppDispatch();
+
+  const intervals = useAppSelector(selectIntervals);
 
   const [isOpened, setIsOpened] = useState(false);
   const [preferences, setPreferences] = useState(intervals);
@@ -16,9 +20,9 @@ export const Settings = () => {
   }, []);
 
   const handleClose = useCallback(() => {
-    setIntervals(preferences);
+    dispatch(setIntervals(preferences));
     setIsOpened(false);
-  }, [preferences, setIntervals]);
+  }, [dispatch, preferences]);
 
   const handleIntervalChange = useCallback(
     (interval: PomodoroIntervals) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -33,13 +37,13 @@ export const Settings = () => {
   const handleThemeChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
-        setTheme('dark');
+        dispatch(enableDarkMode());
         return;
       }
 
-      setTheme('light');
+      dispatch(disableDarkMode());
     },
-    [setTheme]
+    [dispatch]
   );
 
   return (

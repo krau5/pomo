@@ -1,8 +1,10 @@
-import { PropsWithChildren, useContext } from 'react';
+import { PropsWithChildren } from 'react';
 import { ThemeProvider, Global } from '@emotion/react';
 import { PomodoroIntervals, StaticThemeSettings, Theme } from 'types';
 import { styles } from './UIProvider.styles';
-import { AppContext } from 'app/AppContext';
+import { useAppSelector } from 'store';
+import { selectTheme } from 'store/theme';
+import { selectCurrentInterval } from 'store/intervals';
 
 const makeTheme = (themeSettings: StaticThemeSettings): Theme => {
   const { unit, ...theme } = themeSettings;
@@ -92,7 +94,8 @@ const themes: Record<
 };
 
 export const UIProvider = ({ children }: PropsWithChildren) => {
-  const { currentInterval, theme: uiTheme } = useContext(AppContext);
+  const currentInterval = useAppSelector(selectCurrentInterval);
+  const uiTheme = useAppSelector(selectTheme);
 
   const theme: Theme = makeTheme(
     defaultThemeSettings(themes[currentInterval][uiTheme])

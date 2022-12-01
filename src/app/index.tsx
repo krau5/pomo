@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
 import { Layout } from 'components/Layout';
-import { AppProvider } from 'app/AppProvider';
 import { UIProvider } from 'app/UIProvider';
 import { Routes } from 'constants/routes';
 import { lazy } from 'react';
@@ -24,23 +23,18 @@ const SignUp = lazy(() =>
 );
 
 export const App = () => (
-  <AppProvider>
-    <UIProvider>
-      <BrowserRouter>
-        <Switch>
-          <Route path={Routes.HOME} element={<Layout children={<Home />} />} />
+  <UIProvider>
+    <BrowserRouter>
+      <Switch>
+        <Route path={Routes.HOME} element={<Layout children={<Home />} />} />
 
-          <Route
-            path={Routes.LOGIN}
-            element={<Layout children={<Login />} />}
-          />
+        <Route path={Routes.LOGIN} element={<Layout children={<Login />} />} />
 
-          <Route
-            path={Routes.SIGN_UP}
-            element={<Layout children={<SignUp />} />}
-          />
-        </Switch>
-      </BrowserRouter>
-    </UIProvider>
-  </AppProvider>
+        <Route
+          path={Routes.SIGN_UP}
+          element={<Layout children={<SignUp />} />}
+        />
+      </Switch>
+    </BrowserRouter>
+  </UIProvider>
 );

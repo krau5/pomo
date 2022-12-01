@@ -1,10 +1,19 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button } from 'components/Button';
-import { AppContext } from 'app/AppContext';
 import { Box } from 'components/Box';
 import { Settings } from './Settings';
 import { Typography } from 'components/Typography';
 import { PomodoroIntervals } from 'types';
+import { useAppDispatch, useAppSelector } from 'store';
+import { selectTheme } from 'store/theme';
+import {
+  incrementPomodoroCount,
+  resetPomodoroCount,
+  selectCurrentInterval,
+  selectIntervals,
+  selectPomodoroCount,
+  setCurrentInterval,
+} from 'store/intervals';
 
 type WorkerEvent = {
   action: 'syncTimer' | 'timerHasFinished';
@@ -20,14 +29,13 @@ const link = document.getElementById('favicon') as HTMLLinkElement;
 const pomodoroInSession = 4;
 
 export const Timer = () => {
-  const {
-    currentInterval,
-    setCurrentInterval,
-    intervals,
-    pomodoroCount,
-    setPomodoroCount,
-    theme,
-  } = useContext(AppContext);
+  const dispatch = useAppDispatch();
+
+  const theme = useAppSelector(selectTheme);
+  const currentInterval = useAppSelector(selectCurrentInterval);
+  const intervals = useAppSelector(selectIntervals);
+  const pomodoroCount = useAppSelector(selectPomodoroCount);
+
   const currentIntervalTime = useMemo(
     () => intervals[currentInterval] * 60,
     [currentInterval, intervals]
@@ -84,24 +92,24 @@ export const Timer = () => {
       currentInterval === 'pomodoro' &&
       pomodoroCount === pomodoroInSession - 1
     ) {
-      setPomodoroCount(0);
-      setCurrentInterval('longBreak');
+      dispatch(resetPomodoroCount());
+      dispatch(setCurrentInterval('longBreak'));
+      setTimer(0);
       return;
     } else if (currentInterval === 'pomodoro') {
-      setPomodoroCount(pomodoroCount + 1);
+      dispatch(incrementPomodoroCount());
     }
 
     const nextInterval = getNextInterval();
 
     updateFavicon(nextInterval);
-    setCurrentInterval(getNextInterval());
+    dispatch(setCurrentInterval(getNextInterval()));
     setTimer(0);
   }, [
     currentInterval,
+    dispatch,
     getNextInterval,
     pomodoroCount,
-    setCurrentInterval,
-    setPomodoroCount,
     updateFavicon,
   ]);
 
@@ -121,9 +129,9 @@ export const Timer = () => {
 
         if (currentInterval === 'pomodoro') {
           if (pomodoroCount === pomodoroInSession - 1) {
-            setPomodoroCount(0);
+            dispatch(resetPomodoroCount());
           } else {
-            setPomodoroCount(pomodoroCount + 1);
+            dispatch(incrementPomodoroCount());
           }
         }
 
@@ -133,10 +141,9 @@ export const Timer = () => {
     },
     [
       currentInterval,
+      dispatch,
       getNextInterval,
       pomodoroCount,
-      setCurrentInterval,
-      setPomodoroCount,
       sound,
       updateFavicon,
     ]
