@@ -7,7 +7,7 @@ import { disableDarkMode, enableDarkMode } from 'store/theme';
 import { useAppDispatch, useAppSelector } from 'store';
 import { selectIntervals, setIntervals } from 'store/intervals';
 
-export const Settings = () => {
+export const SettingsModal = () => {
   const dispatch = useAppDispatch();
 
   const intervals = useAppSelector(selectIntervals);

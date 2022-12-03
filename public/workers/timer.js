@@ -42,6 +42,11 @@ class Timer {
       count: this.count,
     });
   }
+
+  finishTimer() {
+    this.resetTimer();
+    self.postMessage({ action: 'timerHasFinished' });
+  }
 }
 
 const timer = new Timer();
@@ -59,5 +64,9 @@ self.onmessage = (event) => {
 
   if (action === 'reset') {
     timer.resetTimer();
+  }
+
+  if (action === 'finish') {
+    timer.finishTimer();
   }
 };
