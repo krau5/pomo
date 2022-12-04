@@ -7,10 +7,12 @@ import {
 import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { SettingsModal } from './SettingsModal';
 
 export const Settings = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   const intervals = useAppSelector(selectIntervals);
   const currentInterval = useAppSelector(selectCurrentInterval);
 
@@ -71,6 +73,12 @@ export const Settings = () => {
     }
   }, [currentIntervalTime, isPaused, resetTimer, startTimer, timer]);
 
+  useEffect(() => {
+    if (timer === currentIntervalTime) {
+      audioRef.current?.play();
+    }
+  }, [currentIntervalTime, timer]);
+
   return (
     <Box display="flex" alignItems="center" flexDirection="column">
       <TimeLeft />
@@ -84,6 +92,8 @@ export const Settings = () => {
 
         <FinishTimer />
       </Box>
+
+      <audio src="/sounds/ring.mp3" ref={audioRef} />
     </Box>
   );
 };
