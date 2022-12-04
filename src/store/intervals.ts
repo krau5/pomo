@@ -59,15 +59,15 @@ const selectState = (state: RootState) => state.intervals;
 
 export const selectCurrentInterval = createSelector(
   selectState,
-  (state) => state.currentInterval
+  (state): PomodoroIntervals => state.currentInterval
 );
 
 export const selectIntervals = createSelector(
   selectState,
-  (state) => state.intervals
+  (state): Intervals => state.intervals
 );
 
 export const selectPomodoroCount = createSelector(
   selectState,
-  (state) => state.pomodoroCount
+  (state): number => state.pomodoroCount
 );
