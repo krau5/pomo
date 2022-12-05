@@ -1,6 +1,6 @@
+import { useMemo } from 'react';
 import { Typography } from 'components/Typography';
 import { useTimerContext } from './TimerContext';
-import { useMemo } from 'react';
 
 export const TimeLeft = () => {
   const { isPaused, timer, duration } = useTimerContext();

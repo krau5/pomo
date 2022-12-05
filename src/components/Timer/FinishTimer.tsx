@@ -1,5 +1,5 @@
-import { Button } from 'components/Button';
 import { useCallback } from 'react';
+import { Button } from 'components/Button';
 import { useTimerContext } from './TimerContext';
 
 export const FinishTimer = () => {

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { ButtonProps } from './types';
 import { Theme, ThemeColorName } from 'types';
+import { ButtonProps } from './types';
 
 const background: Record<'primary' | 'secondary', ThemeColorName> = {
   primary: 'primary',

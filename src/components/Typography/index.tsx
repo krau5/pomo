@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
+import { ThemeColorName } from 'types';
 import { styles } from './Typography.styles';
 import { TypographyVariants } from './types';
-import { ThemeColorName } from 'types';
 
 type TypographyProps = {
   color?: ThemeColorName | 'inherit';

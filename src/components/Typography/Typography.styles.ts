@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from '@emotion/react';
-import { TypographyVariants } from './types';
 import { Theme, ThemeColorName } from 'types';
+import { TypographyVariants } from './types';
 
 type Props = {
   color: ThemeColorName | 'inherit';

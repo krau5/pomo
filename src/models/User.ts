@@ -1,6 +1,6 @@
 import { doc, collection, getDoc, setDoc } from 'firebase/firestore';
+import { genSalt, hash } from 'bcryptjs';
 import { database } from 'constants/firebase';
-import bcrypt from 'bcryptjs';
 
 export type Profile = {
   email: string;
@@ -20,8 +20,8 @@ class UserService {
     const snapshot = await getDoc(userRef);
 
     if (!snapshot.exists()) {
-      bcrypt.genSalt(10, (_, salt) => {
-        bcrypt.hash(plainPassword, salt, (_, hash) => {
+      genSalt(10, (_, salt) => {
+        hash(plainPassword, salt, (_, hash) => {
           setDoc(userRef, { ...profile, password: hash });
         });
       });
