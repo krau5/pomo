@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Box } from 'components/Box';
 import { Chip } from 'components/Chip';
 import { PomodoroIntervals } from 'types';
@@ -9,10 +10,9 @@ import {
   selectPomodoroCount,
   setCurrentInterval,
 } from 'store/intervals';
-import { Settings } from './Settings';
 import { TimerProvider } from 'components/Timer';
-import { useCallback } from 'react';
 import { selectTheme } from 'store/theme';
+import { Settings } from './Settings';
 
 const chipLabels: Record<PomodoroIntervals, string> = {
   pomodoro: 'Focus',

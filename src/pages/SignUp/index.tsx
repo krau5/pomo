@@ -4,13 +4,13 @@ import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
+import { Navigate } from 'react-router-dom';
+import { auth } from 'constants/firebase';
+import { Routes } from 'constants/routes';
 import { Box } from 'components/Box';
 import { Button } from 'components/Button';
 import { Form, FormTextField } from 'components/forms';
 import { Profile, User } from 'models/User';
-import { auth } from 'constants/firebase';
-import { Navigate } from 'react-router-dom';
-import { Routes } from 'constants/routes';
 
 type FormData = Profile & {
   repeatPassword: string;

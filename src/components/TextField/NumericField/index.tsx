@@ -1,6 +1,6 @@
+import { ChangeEvent, FocusEvent, useCallback } from 'react';
 import { TextFieldProps } from '../types';
 import { styles } from './NumericField.styles';
-import { ChangeEvent, FocusEvent, useCallback } from 'react';
 
 export const NumericField = ({
   name,

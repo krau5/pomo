@@ -7,7 +7,8 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:import/recommended"
     ],
     "overrides": [
     ],
@@ -32,6 +33,18 @@
         "@typescript-eslint/no-empty-function": ["off", "always"],
         "@typescript-eslint/no-unused-vars": "error",
         "react-hooks/exhaustive-deps": "error",
-        "react-hooks/rules-of-hooks": "warn"
+        "react-hooks/rules-of-hooks": "warn",
+        "import/order": ["error", { "groups": ["builtin", "external", "internal", "parent", "sibling", "index"] }]
+    },
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true,
+                "project": "./tsconfig.json"
+            }
+        }
     }
 }

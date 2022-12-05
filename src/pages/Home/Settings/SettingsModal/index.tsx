@@ -1,11 +1,11 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 import { Button } from 'components/Button';
 import { Modal } from 'components/Modal';
-import { SettingsForm } from './SettingsForm';
 import { PomodoroIntervals } from 'types';
 import { disableDarkMode, enableDarkMode } from 'store/theme';
 import { useAppDispatch, useAppSelector } from 'store';
 import { selectIntervals, setIntervals } from 'store/intervals';
+import { SettingsForm } from './SettingsForm';
 
 export const SettingsModal = () => {
   const dispatch = useAppDispatch();

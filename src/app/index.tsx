@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
+import { lazy } from 'react';
+import { Routes } from 'constants/routes';
 import { Layout } from 'components/Layout';
 import { UIProvider } from 'app/UIProvider';
-import { Routes } from 'constants/routes';
-import { lazy } from 'react';
 
 const Home = lazy(() =>
   import('pages/Home').then((module) => ({

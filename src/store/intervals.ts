@@ -1,10 +1,10 @@
-import { PomodoroIntervals } from 'types';
 import {
   createAction,
   createSelector,
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
+import { PomodoroIntervals } from 'types';
 import { RootState } from '.';
 
 type Intervals = Record<PomodoroIntervals, number>;

@@ -1,10 +1,10 @@
 import { PropsWithChildren } from 'react';
 import { ThemeProvider, Global } from '@emotion/react';
 import { PomodoroIntervals, StaticThemeSettings, Theme } from 'types';
-import { styles } from './UIProvider.styles';
 import { useAppSelector } from 'store';
 import { selectTheme } from 'store/theme';
 import { selectCurrentInterval } from 'store/intervals';
+import { styles } from './UIProvider.styles';
 
 const makeTheme = (themeSettings: StaticThemeSettings): Theme => {
   const { unit, ...theme } = themeSettings;

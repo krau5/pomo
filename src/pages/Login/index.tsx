@@ -4,12 +4,12 @@ import {
   useAuthState,
   useSignInWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
+import { Navigate } from 'react-router-dom';
+import { auth } from 'constants/firebase';
+import { Routes } from 'constants/routes';
 import { Button } from 'components/Button';
 import { Box } from 'components/Box';
 import { Form, FormTextField } from 'components/forms';
-import { auth } from 'constants/firebase';
-import { Navigate } from 'react-router-dom';
-import { Routes } from 'constants/routes';
 
 type FormData = {
   email: string;

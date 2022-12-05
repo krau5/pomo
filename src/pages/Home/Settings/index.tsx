@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   FinishTimer,
   TimeLeft,
@@ -7,7 +8,6 @@ import {
 import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
-import { useEffect, useMemo, useRef, useState } from 'react';
 import { SettingsModal } from './SettingsModal';
 
 export const Settings = () => {

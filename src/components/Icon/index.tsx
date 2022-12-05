@@ -1,3 +1,5 @@
+import { css } from '@emotion/react';
+import { ReactNode } from 'react';
 import { Theme, ThemeColorName } from 'types';
 import { Break } from './static/Break';
 import { Close } from './static/Close';
@@ -6,8 +8,6 @@ import { Focus } from './static/Focus';
 import { Forward } from './static/Forward';
 import { Pause } from './static/Pause';
 import { Play } from './static/Play';
-import { css } from '@emotion/react';
-import { ReactNode } from 'react';
 
 const iconNames = [
   'break',
