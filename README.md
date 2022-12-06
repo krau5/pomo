@@ -1,3 +1,5 @@
+![preview](https://user-images.githubusercontent.com/52201020/205913761-216dc079-90fe-420d-8544-dd3badaefce4.png)
+
 # Pomodoro Timer
 
 Pomodoro technique helps you to manage your time and work on a task without any distractions. <br />
