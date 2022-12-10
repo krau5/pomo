@@ -1,12 +1,11 @@
 import { css } from '@emotion/react';
-// eslint-disable-next-line import/no-unresolved
-import RobotoFlex from '/fonts/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf';
 
 export const font = () => css`
   @font-face {
     font-family: 'Roboto Flex';
     font-style: normal;
     font-weight: 100 1000;
-    src: url(${RobotoFlex}) format('truetype');
+    src: url('/fonts/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf')
+      format('truetype');
   } ;
 `;
