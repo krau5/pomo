@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { shallowEqual } from 'react-redux';
 import {
   FinishTimer,
   TimeLeft,
@@ -8,17 +9,18 @@ import {
 import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
+import { selectIsSoundEnabled } from 'store/preferences';
 import { SettingsModal } from './SettingsModal';
 
 export const Settings = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const intervals = useAppSelector(selectIntervals);
+  const intervals = useAppSelector(selectIntervals, shallowEqual);
   const currentInterval = useAppSelector(selectCurrentInterval);
+  const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
 
   const {
     isPaused,
-    setIsPaused,
     timer,
     duration,
     start: startTimer,
@@ -62,9 +64,8 @@ export const Settings = () => {
   }, [currentInterval, minutes, seconds, wasOnceStarted]);
 
   useEffect(() => {
-    setIsPaused(true);
     resetTimer();
-  }, [intervals, resetTimer, setIsPaused]);
+  }, [intervals, resetTimer]);
 
   useEffect(() => {
     if (!isPaused && timer === 0) {
@@ -74,10 +75,10 @@ export const Settings = () => {
   }, [currentIntervalTime, isPaused, resetTimer, startTimer, timer]);
 
   useEffect(() => {
-    if (timer === currentIntervalTime) {
+    if (timer === currentIntervalTime && isSoundEnabled) {
       audioRef.current?.play();
     }
-  }, [currentIntervalTime, timer]);
+  }, [currentIntervalTime, isSoundEnabled, timer]);
 
   return (
     <Box display="flex" alignItems="center" flexDirection="column">

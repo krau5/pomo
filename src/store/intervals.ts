@@ -13,6 +13,7 @@ type State = {
   currentInterval: PomodoroIntervals;
   intervals: Intervals;
   pomodoroCount: number;
+  pomodorosInSession: number;
 };
 
 const initialState: State = {
@@ -23,11 +24,16 @@ const initialState: State = {
     longBreak: 30,
   },
   pomodoroCount: 0,
+  pomodorosInSession: 4,
 };
 
 export const incrementPomodoroCount = createAction('pomoCount/increment');
 
 export const resetPomodoroCount = createAction('pomoCount/reset');
+
+export const setPomodorosInSession = createAction<number>(
+  'pomodorosInSession/set'
+);
 
 const intervalsSlice = createSlice({
   name: 'intervals',
@@ -48,6 +54,13 @@ const intervalsSlice = createSlice({
     builder.addCase(resetPomodoroCount, (state) => {
       state.pomodoroCount = 0;
     });
+
+    builder.addCase(
+      setPomodorosInSession,
+      (state, action: PayloadAction<number>) => {
+        state.pomodorosInSession = action.payload;
+      }
+    );
   },
 });
 
@@ -70,4 +83,9 @@ export const selectIntervals = createSelector(
 export const selectPomodoroCount = createSelector(
   selectState,
   (state): number => state.pomodoroCount
+);
+
+export const selectPomodorosInSession = createSelector(
+  selectState,
+  (state): number => state.pomodorosInSession
 );
