@@ -6,20 +6,28 @@ import { Typography } from 'components/Typography';
 import { Switch } from 'components/Switch';
 import { useAppSelector } from 'store';
 import { selectTheme } from 'store/theme';
+import { selectIsSoundEnabled } from 'store/preferences';
 
 type Props = {
-  value: Record<PomodoroIntervals, number>;
+  preferences: Record<PomodoroIntervals, number>;
+  pomodorosInSession: string | number;
   onIntervalChange: (
     interval: PomodoroIntervals
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
   onThemeChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onPomodorosInSessionChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onSoundChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const SettingsForm = ({
-  value: preferences,
+  preferences,
+  pomodorosInSession,
   onIntervalChange: handleIntervalChange,
   onThemeChange: handleThemeChange,
+  onPomodorosInSessionChange: handlePomodorosInSessionChange,
+  onSoundChange: handleSoundChange,
 }: Props) => {
+  const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
   const theme = useAppSelector(selectTheme);
 
   const settings = useMemo(
@@ -30,6 +38,18 @@ export const SettingsForm = ({
           <Switch
             defaultChecked={theme === 'dark'}
             onChange={handleThemeChange}
+          />
+        ),
+      },
+      {
+        text: 'Pomodoros until long break',
+        component: (
+          <TextField
+            onChange={handlePomodorosInSessionChange}
+            value={pomodorosInSession}
+            min={1}
+            max={99}
+            type="number"
           />
         ),
       },
@@ -69,8 +89,26 @@ export const SettingsForm = ({
           />
         ),
       },
+      {
+        text: 'Sound',
+        component: (
+          <Switch
+            defaultChecked={isSoundEnabled}
+            onChange={handleSoundChange}
+          />
+        ),
+      },
     ],
-    [handleIntervalChange, handleThemeChange, preferences, theme]
+    [
+      handleIntervalChange,
+      handlePomodorosInSessionChange,
+      handleSoundChange,
+      handleThemeChange,
+      isSoundEnabled,
+      pomodorosInSession,
+      preferences,
+      theme,
+    ]
   );
 
   return (
