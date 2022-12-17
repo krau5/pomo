@@ -14,5 +14,5 @@ export type StaticThemeSettings = {
 };
 
 export type Theme = StaticThemeSettings & {
-  sizing: (...sizes: number[]) => string;
+  sizing: (...sizes: (number | string)[]) => string;
 };
