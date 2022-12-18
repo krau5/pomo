@@ -34,7 +34,8 @@
         "@typescript-eslint/no-unused-vars": "error",
         "react-hooks/exhaustive-deps": "error",
         "react-hooks/rules-of-hooks": "warn",
-        "import/order": ["error", { "groups": ["builtin", "external", "internal", "parent", "sibling", "index"] }]
+        "import/order": ["error", { "groups": ["builtin", "external", "internal", "parent", "sibling", "index"] }],
+        "@typescript-eslint/no-var-requires": "warn"
     },
     "settings": {
         "import/parsers": {

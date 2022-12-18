@@ -27,6 +27,7 @@ export const Switch = ({
           css={styles.input}
           type="checkbox"
           onChange={handleChange}
+          checked={isChecked}
           name={name}
           {...props}
         />
