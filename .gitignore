@@ -7,7 +7,6 @@ node_modules/
 
 # Build
 dist/
-build/
 
 # Miscellaneous
 .DS_Store

@@ -1,40 +1,95 @@
-import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
-import { lazy } from 'react';
-import { Routes } from 'constants/routes';
+import { useCallback, useEffect } from 'react';
 import { Layout } from 'components/Layout';
 import { UIProvider } from 'components/UIProvider';
+import { Box } from 'components/Box';
+import { Chip } from 'components/Chip';
+import { PomodoroIntervals } from 'types';
+import { useAppDispatch, useAppSelector } from 'store';
+import {
+  incrementPomodoroCount,
+  resetPomodoroCount,
+  selectCurrentInterval,
+  selectPomodoroCount,
+  selectPomodorosInSession,
+  setCurrentInterval,
+} from 'store/intervals';
+import { TimerProvider } from 'components/Timer';
+import { selectTheme } from 'store/theme';
+import { Settings } from './Settings';
 
-const Home = lazy(() =>
-  import('pages/Home').then((module) => ({
-    default: module.Home,
-  }))
-);
+const chipLabels: Record<PomodoroIntervals, string> = {
+  pomodoro: 'Focus',
+  shortBreak: 'Short Break',
+  longBreak: 'Long Break',
+};
 
-const Login = lazy(() =>
-  import('pages/Login').then((module) => ({
-    default: module.Login,
-  }))
-);
+const favicon = document.getElementById('favicon') as HTMLLinkElement;
 
-const SignUp = lazy(() =>
-  import('pages/SignUp').then((module) => ({
-    default: module.SignUp,
-  }))
-);
+export const App = () => {
+  const dispatch = useAppDispatch();
 
-export const App = () => (
-  <UIProvider>
-    <BrowserRouter>
-      <Switch>
-        <Route path={Routes.HOME} element={<Layout children={<Home />} />} />
+  const pomodorosInSession = useAppSelector(selectPomodorosInSession);
+  const currentInterval = useAppSelector(selectCurrentInterval);
+  const pomodoroCount = useAppSelector(selectPomodoroCount);
+  const theme = useAppSelector(selectTheme);
 
-        <Route path={Routes.LOGIN} element={<Layout children={<Login />} />} />
+  const label = chipLabels[currentInterval];
 
-        <Route
-          path={Routes.SIGN_UP}
-          element={<Layout children={<SignUp />} />}
-        />
-      </Switch>
-    </BrowserRouter>
-  </UIProvider>
-);
+  const getNextInterval = useCallback((): PomodoroIntervals => {
+    if (currentInterval === 'shortBreak' || currentInterval === 'longBreak') {
+      return 'pomodoro';
+    }
+
+    if (
+      currentInterval === 'pomodoro' &&
+      pomodoroCount === pomodorosInSession - 1
+    ) {
+      return 'longBreak';
+    }
+
+    return 'shortBreak';
+  }, [currentInterval, pomodoroCount, pomodorosInSession]);
+
+  const updateFavicon = useCallback(
+    (interval: PomodoroIntervals) => {
+      if (favicon) {
+        favicon.href = `/images/favicon/${interval}-${theme}.svg`;
+      }
+    },
+    [theme]
+  );
+
+  const handleTimerFinish = useCallback(() => {
+    const nextInterval = getNextInterval();
+
+    if (nextInterval === 'longBreak') {
+      dispatch(resetPomodoroCount());
+    } else if (nextInterval !== 'pomodoro') {
+      dispatch(incrementPomodoroCount());
+    }
+
+    updateFavicon(nextInterval);
+    dispatch(setCurrentInterval(nextInterval));
+  }, [dispatch, getNextInterval, updateFavicon]);
+
+  useEffect(() => {
+    dispatch(setCurrentInterval('pomodoro'));
+    dispatch(resetPomodoroCount());
+  }, [dispatch, pomodorosInSession]);
+
+  return (
+    <UIProvider>
+      <TimerProvider onTimerFinish={handleTimerFinish}>
+        <Layout>
+          <Chip icon={currentInterval === 'pomodoro' ? 'focus' : 'break'}>
+            {label}
+          </Chip>
+
+          <Box mt={8}>
+            <Settings />
+          </Box>
+        </Layout>
+      </TimerProvider>
+    </UIProvider>
+  );
+};
