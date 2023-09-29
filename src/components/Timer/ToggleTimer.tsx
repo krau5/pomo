@@ -31,6 +31,7 @@ export const ToggleTimer = ({
 
   return (
     <Button
+      aria-label="Toggle timer"
       icon={isPaused ? 'play' : 'pause'}
       size="large"
       onClick={handleToggle}

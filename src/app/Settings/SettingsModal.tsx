@@ -79,7 +79,12 @@ export const SettingsModal = () => {
 
   return (
     <>
-      <Button icon="dots" onClick={handleOpen} variant="secondary" />
+      <Button
+        aria-label="Open settings"
+        icon="dots"
+        onClick={handleOpen}
+        variant="secondary"
+      />
 
       {isOpened && (
         <Modal onClose={handleClose} title="Settings">

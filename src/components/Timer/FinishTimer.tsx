@@ -10,5 +10,12 @@ export const FinishTimer = () => {
     finish();
   }, [finish, setTimer]);
 
-  return <Button icon="forward" onClick={handleFinish} variant="secondary" />;
+  return (
+    <Button
+      aria-label="Finish timer"
+      icon="forward"
+      onClick={handleFinish}
+      variant="secondary"
+    />
+  );
 };

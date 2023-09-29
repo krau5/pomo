@@ -7,5 +7,6 @@ export const font = () => css`
     font-weight: 100 1000;
     src: url('/fonts/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf')
       format('truetype');
+    font-display: swap;
   } ;
 `;
