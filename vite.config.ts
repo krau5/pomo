@@ -1,16 +1,8 @@
-import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => ({
-  resolve: {
-    alias: {
-      app: path.resolve('src/app'),
-      components: path.resolve('src/components'),
-      store: path.resolve('src/store'),
-      types: path.resolve('src/types'),
-    },
-  },
   plugins: [
     react({
       jsxImportSource: '@emotion/react',
@@ -18,5 +10,6 @@ export default defineConfig(() => ({
         plugins: ['@emotion/babel-plugin'],
       },
     }),
+    tsconfigPaths(),
   ],
 }));
