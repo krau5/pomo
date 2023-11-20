@@ -19,7 +19,6 @@ const TypographyTags: Record<
   subtitle1: 'h3',
   subtitle2: 'h4',
   body: 'p',
-  caption: 'span',
 };
 
 export const Typography = ({

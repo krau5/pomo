@@ -14,7 +14,6 @@ import {
   setCurrentInterval,
 } from 'store/intervals';
 import { TimerProvider } from 'components/Timer';
-import { selectTheme } from 'store/theme';
 import { Settings } from './Settings';
 
 const chipLabels: Record<PomodoroIntervals, string> = {
@@ -23,15 +22,12 @@ const chipLabels: Record<PomodoroIntervals, string> = {
   longBreak: 'Long Break',
 };
 
-const favicon = document.getElementById('favicon') as HTMLLinkElement;
-
 export const App = () => {
   const dispatch = useAppDispatch();
 
   const pomodorosInSession = useAppSelector(selectPomodorosInSession);
   const currentInterval = useAppSelector(selectCurrentInterval);
   const pomodoroCount = useAppSelector(selectPomodoroCount);
-  const theme = useAppSelector(selectTheme);
 
   const label = chipLabels[currentInterval];
 
@@ -50,15 +46,6 @@ export const App = () => {
     return 'shortBreak';
   }, [currentInterval, pomodoroCount, pomodorosInSession]);
 
-  const updateFavicon = useCallback(
-    (interval: PomodoroIntervals) => {
-      if (favicon) {
-        favicon.href = `/images/favicon/${interval}-${theme}.svg`;
-      }
-    },
-    [theme]
-  );
-
   const handleTimerFinish = useCallback(() => {
     const nextInterval = getNextInterval();
 
@@ -68,9 +55,8 @@ export const App = () => {
       dispatch(incrementPomodoroCount());
     }
 
-    updateFavicon(nextInterval);
     dispatch(setCurrentInterval(nextInterval));
-  }, [dispatch, getNextInterval, updateFavicon]);
+  }, [dispatch, getNextInterval]);
 
   useEffect(() => {
     dispatch(setCurrentInterval('pomodoro'));

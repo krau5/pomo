@@ -43,10 +43,6 @@ export const typographyStyles: Record<
     font-size: ${theme.sizing(4)};
     font-weight: 400;
   `,
-  caption: (theme) => css`
-    font-size: ${theme.sizing(3)};
-    font-weight: 400;
-  `,
 };
 
 export const styles =

@@ -3,5 +3,4 @@ export type TypographyVariants =
   | 'h2'
   | 'subtitle1'
   | 'subtitle2'
-  | 'body'
-  | 'caption';
+  | 'body';
