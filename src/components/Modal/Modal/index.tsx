@@ -4,7 +4,8 @@ import { Typography } from 'components/Typography';
 import { styles } from './Modal.styles';
 
 export type ModalProps = {
-  onClose: () => void;
+  isOpened?: boolean;
+  onClose?: () => void;
   title: string;
 };
 
@@ -22,24 +23,31 @@ const ModalContent = ({ children }: PropsWithChildren) => (
 
 export const Modal = ({
   children,
+  isOpened,
   onClose,
   title,
-}: PropsWithChildren<ModalProps>) => (
-  <Overlay>
-    <div css={styles.modal}>
-      <ModalHeader>
-        <Typography variant="subtitle1">{title}</Typography>
+}: PropsWithChildren<ModalProps>) => {
+  if (!isOpened) {
+    return null;
+  }
 
-        <Button
-          icon="close"
-          iconSize="medium"
-          onClick={onClose}
-          size="small"
-          variant="light"
-        />
-      </ModalHeader>
+  return (
+    <Overlay>
+      <div css={styles.modal}>
+        <ModalHeader>
+          <Typography variant="subtitle1">{title}</Typography>
 
-      <ModalContent>{children}</ModalContent>
-    </div>
-  </Overlay>
-);
+          <Button
+            icon="close"
+            iconSize="medium"
+            onClick={onClose}
+            size="small"
+            variant="light"
+          />
+        </ModalHeader>
+
+        <ModalContent>{children}</ModalContent>
+      </div>
+    </Overlay>
+  );
+};

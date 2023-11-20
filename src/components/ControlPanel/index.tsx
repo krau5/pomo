@@ -9,10 +9,10 @@ import {
 import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
-import { selectIsSoundEnabled } from 'store/preferences';
-import { SettingsModal } from './SettingsModal';
+import { selectIsSoundEnabled } from 'store/settings';
+import { Settings } from 'components/Settings';
 
-export const Settings = () => {
+export const ControlPanel = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const intervals = useAppSelector(selectIntervals, shallowEqual);
@@ -85,7 +85,7 @@ export const Settings = () => {
       <TimeLeft />
 
       <Box display="flex" alignItems="center" mt={8}>
-        <SettingsModal />
+        <Settings />
 
         <Box px={4}>
           <ToggleTimer duration={currentIntervalTime} initialCount={timer} />

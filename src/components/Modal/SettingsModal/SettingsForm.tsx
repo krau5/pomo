@@ -6,7 +6,7 @@ import { Typography } from 'components/Typography';
 import { Switch } from 'components/Switch';
 import { useAppSelector } from 'store';
 import { selectTheme } from 'store/theme';
-import { selectIsSoundEnabled } from 'store/preferences';
+import { selectIsSoundEnabled } from 'store/settings';
 
 type Props = {
   preferences: Record<PomodoroIntervals, number>;
@@ -22,10 +22,10 @@ type Props = {
 export const SettingsForm = ({
   preferences,
   pomodorosInSession,
-  onIntervalChange: handleIntervalChange,
-  onThemeChange: handleThemeChange,
-  onPomodorosInSessionChange: handlePomodorosInSessionChange,
-  onSoundChange: handleSoundChange,
+  onIntervalChange,
+  onThemeChange,
+  onPomodorosInSessionChange,
+  onSoundChange,
 }: Props) => {
   const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
   const theme = useAppSelector(selectTheme);
@@ -35,17 +35,14 @@ export const SettingsForm = ({
       {
         text: 'Dark mode',
         component: (
-          <Switch
-            defaultChecked={theme === 'dark'}
-            onChange={handleThemeChange}
-          />
+          <Switch defaultChecked={theme === 'dark'} onChange={onThemeChange} />
         ),
       },
       {
         text: 'Pomodoros until long break',
         component: (
           <TextField
-            onChange={handlePomodorosInSessionChange}
+            onChange={onPomodorosInSessionChange}
             value={pomodorosInSession}
             min={1}
             max={99}
@@ -57,7 +54,7 @@ export const SettingsForm = ({
         text: 'Focus length',
         component: (
           <TextField
-            onChange={handleIntervalChange('pomodoro')}
+            onChange={onIntervalChange('pomodoro')}
             value={preferences['pomodoro']}
             min={1}
             max={99}
@@ -69,7 +66,7 @@ export const SettingsForm = ({
         text: 'Short break length',
         component: (
           <TextField
-            onChange={handleIntervalChange('shortBreak')}
+            onChange={onIntervalChange('shortBreak')}
             value={preferences['shortBreak']}
             min={1}
             max={99}
@@ -81,7 +78,7 @@ export const SettingsForm = ({
         text: 'Long break length',
         component: (
           <TextField
-            onChange={handleIntervalChange('longBreak')}
+            onChange={onIntervalChange('longBreak')}
             value={preferences['longBreak']}
             min={1}
             max={99}
@@ -92,19 +89,16 @@ export const SettingsForm = ({
       {
         text: 'Sound',
         component: (
-          <Switch
-            defaultChecked={isSoundEnabled}
-            onChange={handleSoundChange}
-          />
+          <Switch defaultChecked={isSoundEnabled} onChange={onSoundChange} />
         ),
       },
     ],
     [
-      handleIntervalChange,
-      handlePomodorosInSessionChange,
-      handleSoundChange,
-      handleThemeChange,
       isSoundEnabled,
+      onIntervalChange,
+      onPomodorosInSessionChange,
+      onSoundChange,
+      onThemeChange,
       pomodorosInSession,
       preferences,
       theme,

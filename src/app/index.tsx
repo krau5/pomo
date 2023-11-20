@@ -14,7 +14,7 @@ import {
 } from 'store/intervals';
 import { TimerProvider } from 'components/Timer';
 import { useThemedFavicon } from 'hooks';
-import { Settings } from './Settings';
+import { ControlPanel } from 'components/ControlPanel';
 
 const chipLabels: Record<PomodoroIntervals, string> = {
   pomodoro: 'Focus',
@@ -80,7 +80,7 @@ export const App = () => {
           </Chip>
 
           <Box mt={8}>
-            <Settings />
+            <ControlPanel />
           </Box>
         </Box>
       </TimerProvider>

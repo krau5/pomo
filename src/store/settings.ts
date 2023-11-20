@@ -9,7 +9,7 @@ const initialState: State = {
   soundEnabled: true,
 };
 
-const preferencesSlice = createSlice({
+const settingsSlice = createSlice({
   name: 'preferences',
   initialState,
   reducers: {
@@ -22,9 +22,9 @@ const preferencesSlice = createSlice({
   },
 });
 
-export const preferences = preferencesSlice.reducer;
+export const settings = settingsSlice.reducer;
 
-export const { enableSound, disableSound } = preferencesSlice.actions;
+export const { enableSound, disableSound } = settingsSlice.actions;
 
 const selectState = (state: RootState) => state.preferences;
 
