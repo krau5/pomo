@@ -14,8 +14,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
     "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
     "types": ["vite/client", "node"],
