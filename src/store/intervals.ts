@@ -7,7 +7,7 @@ import {
 import { PomodoroIntervals } from 'types';
 import { RootState } from '.';
 
-type Intervals = Record<PomodoroIntervals, number>;
+export type Intervals = Record<PomodoroIntervals, number>;
 
 type State = {
   currentInterval: PomodoroIntervals;
@@ -27,9 +27,9 @@ const initialState: State = {
   pomodorosInSession: 4,
 };
 
-export const incrementPomodoroCount = createAction('pomoCount/increment');
+export const incrementPomodoroCount = createAction('pomodoroCount/increment');
 
-export const resetPomodoroCount = createAction('pomoCount/reset');
+export const resetPomodoroCount = createAction('pomodoroCount/reset');
 
 export const setPomodorosInSession = createAction<number>(
   'pomodorosInSession/set'

@@ -2,7 +2,11 @@ import { useCallback } from 'react';
 import { useAppDispatch } from 'store';
 import { enableSound, disableSound } from 'store/settings';
 import { disableDarkMode, enableDarkMode } from 'store/theme';
-import { setPomodorosInSession } from 'store/intervals';
+import {
+  Intervals,
+  setIntervals,
+  setPomodorosInSession,
+} from 'store/intervals';
 
 type Props = {
   enable: boolean;
@@ -35,12 +39,24 @@ export const useSettings = () => {
     [dispatch]
   );
 
-  const setPomodorosInSessionCount = useCallback(
+  const updatePomodorosInSessionCount = useCallback(
     (count: string | number) => {
       dispatch(setPomodorosInSession(Number(count)));
     },
     [dispatch]
   );
 
-  return { toggleSound, toggleDarkMode, setPomodorosInSessionCount };
+  const updateIntervals = useCallback(
+    (intervals: Intervals) => {
+      dispatch(setIntervals(intervals));
+    },
+    [dispatch]
+  );
+
+  return {
+    toggleSound,
+    toggleDarkMode,
+    updatePomodorosInSessionCount,
+    updateIntervals,
+  };
 };

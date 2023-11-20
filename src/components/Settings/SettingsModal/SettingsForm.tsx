@@ -7,9 +7,10 @@ import { Switch } from 'ui/Switch';
 import { useAppSelector } from 'store';
 import { selectTheme } from 'store/theme';
 import { selectIsSoundEnabled } from 'store/settings';
+import { Intervals } from 'store/intervals';
 
 type Props = {
-  preferences: Record<PomodoroIntervals, number>;
+  intervals: Intervals;
   pomodorosInSession: string | number;
   onIntervalChange: (
     interval: PomodoroIntervals
@@ -20,7 +21,7 @@ type Props = {
 };
 
 export const SettingsForm = ({
-  preferences,
+  intervals,
   pomodorosInSession,
   onIntervalChange,
   onThemeChange,
@@ -55,7 +56,7 @@ export const SettingsForm = ({
         component: (
           <TextField
             onChange={onIntervalChange('pomodoro')}
-            value={preferences['pomodoro']}
+            value={intervals['pomodoro']}
             min={1}
             max={99}
             type="number"
@@ -67,7 +68,7 @@ export const SettingsForm = ({
         component: (
           <TextField
             onChange={onIntervalChange('shortBreak')}
-            value={preferences['shortBreak']}
+            value={intervals['shortBreak']}
             min={1}
             max={99}
             type="number"
@@ -79,7 +80,7 @@ export const SettingsForm = ({
         component: (
           <TextField
             onChange={onIntervalChange('longBreak')}
-            value={preferences['longBreak']}
+            value={intervals['longBreak']}
             min={1}
             max={99}
             type="number"
@@ -100,7 +101,7 @@ export const SettingsForm = ({
       onSoundChange,
       onThemeChange,
       pomodorosInSession,
-      preferences,
+      intervals,
       theme,
     ]
   );

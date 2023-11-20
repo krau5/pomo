@@ -3,12 +3,11 @@ import { Button } from 'ui/Button';
 import { useTimerContext } from './TimerContext';
 
 export const FinishTimer = () => {
-  const { setTimer, finish } = useTimerContext();
+  const { finish } = useTimerContext();
 
   const handleFinish = useCallback(() => {
-    setTimer(0);
     finish();
-  }, [finish, setTimer]);
+  }, [finish]);
 
   return (
     <Button

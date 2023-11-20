@@ -1,11 +1,7 @@
 import { shallowEqual } from 'react-redux';
 import { ChangeEvent, useCallback, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'store';
-import {
-  selectIntervals,
-  selectPomodorosInSession,
-  setIntervals,
-} from 'store/intervals';
+import { useAppSelector } from 'store';
+import { selectIntervals, selectPomodorosInSession } from 'store/intervals';
 import { useSettings } from 'hooks';
 import { PomodoroIntervals } from 'types';
 import { Modal } from 'ui/Modal';
@@ -17,31 +13,40 @@ type Props = {
 };
 
 export const SettingsModal = ({ isOpened, onClose }: Props) => {
-  const dispatch = useAppDispatch();
+  const initialIntervals = useAppSelector(selectIntervals, shallowEqual);
+  const initialPomodorosInSession = useAppSelector(selectPomodorosInSession);
 
-  const intervals = useAppSelector(selectIntervals, shallowEqual);
-  const actualPomodorosInSession = useAppSelector(selectPomodorosInSession);
+  const {
+    toggleSound,
+    toggleDarkMode,
+    updatePomodorosInSessionCount,
+    updateIntervals,
+  } = useSettings();
 
-  const { toggleSound, toggleDarkMode } = useSettings();
-
-  const [preferences, setPreferences] = useState(intervals);
-  const [pomodorosInSessionCount, setPomodorosInSessionCount] = useState<
-    string | number
-  >(actualPomodorosInSession);
+  const [intervals, setIntervals] = useState(initialIntervals);
+  const [pomodorosInSession, setPomodorosInSession] = useState<string | number>(
+    initialPomodorosInSession
+  );
 
   const handleClose = useCallback(() => {
-    dispatch(setIntervals(preferences));
-    setPomodorosInSessionCount(pomodorosInSessionCount);
+    updateIntervals(intervals);
+    updatePomodorosInSessionCount(pomodorosInSession);
 
     if (onClose) {
       onClose();
     }
-  }, [dispatch, preferences, pomodorosInSessionCount, onClose]);
+  }, [
+    updateIntervals,
+    intervals,
+    updatePomodorosInSessionCount,
+    pomodorosInSession,
+    onClose,
+  ]);
 
   const handleIntervalChange = useCallback(
     (interval: PomodoroIntervals) => (event: ChangeEvent<HTMLInputElement>) => {
-      setPreferences((previousPreferences) => ({
-        ...previousPreferences,
+      setIntervals((previousIntervals) => ({
+        ...previousIntervals,
         [interval]: event.target.value,
       }));
     },
@@ -50,7 +55,7 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
 
   const handlePomodorosInSessionChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setPomodorosInSessionCount(event.target.value);
+      setPomodorosInSession(event.target.value);
     },
     []
   );
@@ -72,8 +77,8 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
   return (
     <Modal isOpened={isOpened} onClose={handleClose} title="Settings">
       <SettingsForm
-        preferences={preferences}
-        pomodorosInSession={pomodorosInSessionCount}
+        intervals={intervals}
+        pomodorosInSession={pomodorosInSession}
         onIntervalChange={handleIntervalChange}
         onPomodorosInSessionChange={handlePomodorosInSessionChange}
         onThemeChange={handleThemeChange}

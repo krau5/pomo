@@ -35,6 +35,8 @@ export const TimerProvider = ({
   }, []);
 
   const finish = useCallback(() => {
+    setTimer(0);
+
     worker.postMessage({ action: 'finish' });
   }, []);
 
@@ -65,9 +67,10 @@ export const TimerProvider = ({
         isPaused,
         setIsPaused,
         timer,
-        setTimer,
+
         duration,
         setDuration,
+
         start,
         pause,
         reset,

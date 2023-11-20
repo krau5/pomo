@@ -6,6 +6,8 @@ import { Box } from 'ui/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
 import { selectIsSoundEnabled } from 'store/settings';
+import { getTimeLeft } from 'utils/getTimeLeft';
+import { useTimeTitle } from 'hooks/useTimeTitle';
 
 export const ControlPanel = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -29,34 +31,16 @@ export const ControlPanel = () => {
     [currentInterval, intervals]
   );
 
-  const { minutes, seconds } = useMemo(() => {
-    const minutes = Math.floor((duration - timer) / 60);
-    const formattedMinutes = minutes >= 10 ? `${minutes}` : `0${minutes}`;
-
-    const seconds = (duration - timer) % 60;
-    const formattedSeconds = seconds >= 10 ? `${seconds}` : `0${seconds}`;
-
-    return { minutes: formattedMinutes, seconds: formattedSeconds };
-  }, [duration, timer]);
+  const { minutes, seconds } = useMemo(
+    () => getTimeLeft(duration, timer),
+    [duration, timer]
+  );
 
   useEffect(() => {
     if (!isPaused && !wasOnceStarted) {
       setWasOnceStarted(true);
     }
   }, [isPaused, wasOnceStarted]);
-
-  useEffect(() => {
-    if (wasOnceStarted) {
-      const title = `${minutes}:${seconds} - Time`;
-
-      if (currentInterval === 'pomodoro') {
-        document.title = `${title} to focus`;
-        return;
-      }
-
-      document.title = `${title} for a break`;
-    }
-  }, [currentInterval, minutes, seconds, wasOnceStarted]);
 
   useEffect(() => {
     resetTimer();
@@ -74,6 +58,8 @@ export const ControlPanel = () => {
       audioRef.current?.play();
     }
   }, [currentIntervalTime, isSoundEnabled, timer]);
+
+  useTimeTitle(minutes, seconds, wasOnceStarted);
 
   return (
     <Box display="flex" alignItems="center" flexDirection="column">
