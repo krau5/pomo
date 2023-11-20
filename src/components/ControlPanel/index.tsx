@@ -1,16 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { shallowEqual } from 'react-redux';
-import {
-  FinishTimer,
-  TimeLeft,
-  ToggleTimer,
-  useTimerContext,
-} from 'components/Timer';
-import { Box } from 'components/Box';
+import { Settings } from 'components/Settings';
+import { FinishTimer, TimeLeft, ToggleTimer, useTimerContext } from 'ui/Timer';
+import { Box } from 'ui/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
 import { selectIsSoundEnabled } from 'store/settings';
-import { Settings } from 'components/Settings';
 
 export const ControlPanel = () => {
   const audioRef = useRef<HTMLAudioElement>(null);

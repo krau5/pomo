@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { Icon, IconNames } from 'components/Icon';
-import { Typography } from 'components/Typography';
+import { Icon, IconNames } from 'ui/Icon';
+import { Typography } from 'ui/Typography';
 import { styles } from './Chip.styles';
 
 type Props = {

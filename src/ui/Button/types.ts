@@ -1,5 +1,5 @@
 import { ThemeColorName } from 'types';
-import { IconProps } from 'components/Icon';
+import { IconProps } from 'ui/Icon';
 
 export type ButtonProps = {
   fullWidth?: boolean;

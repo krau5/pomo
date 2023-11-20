@@ -1,9 +1,9 @@
 import { ChangeEvent, useMemo } from 'react';
-import { TextField } from 'components/TextField';
+import { TextField } from 'ui/TextField';
 import { PomodoroIntervals } from 'types';
-import { Box } from 'components/Box';
-import { Typography } from 'components/Typography';
-import { Switch } from 'components/Switch';
+import { Box } from 'ui/Box';
+import { Typography } from 'ui/Typography';
+import { Switch } from 'ui/Switch';
 import { useAppSelector } from 'store';
 import { selectTheme } from 'store/theme';
 import { selectIsSoundEnabled } from 'store/settings';

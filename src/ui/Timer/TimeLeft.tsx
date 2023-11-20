@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Typography } from 'components/Typography';
+import { Typography } from 'ui/Typography';
 import { useTimerContext } from './TimerContext';
 
 export const TimeLeft = () => {

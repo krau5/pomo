@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
-import { Button } from 'components/Button';
-import { SettingsModal } from 'components/Modal';
+import { Button } from 'ui/Button';
+import { SettingsModal } from './SettingsModal';
 
 export const Settings = () => {
   const [isOpened, setIsOpened] = useState(false);

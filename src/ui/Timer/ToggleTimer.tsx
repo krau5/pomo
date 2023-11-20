@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Button } from 'components/Button';
+import { Button } from 'ui/Button';
 import { useTimerContext } from './TimerContext';
 
 type Props = {

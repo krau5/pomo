@@ -8,7 +8,7 @@ import {
 } from 'store/intervals';
 import { useSettings } from 'hooks';
 import { PomodoroIntervals } from 'types';
-import { Modal } from '../Modal';
+import { Modal } from 'ui/Modal';
 import { SettingsForm } from './SettingsForm';
 
 type Props = {
