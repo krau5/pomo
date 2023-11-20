@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react';
-import { Layout } from 'components/Layout';
 import { UIProvider } from 'components/UIProvider';
 import { Box } from 'components/Box';
 import { Chip } from 'components/Chip';
@@ -14,6 +13,7 @@ import {
   setCurrentInterval,
 } from 'store/intervals';
 import { TimerProvider } from 'components/Timer';
+import { useThemedFavicon } from 'hooks';
 import { Settings } from './Settings';
 
 const chipLabels: Record<PomodoroIntervals, string> = {
@@ -63,10 +63,18 @@ export const App = () => {
     dispatch(resetPomodoroCount());
   }, [dispatch, pomodorosInSession]);
 
+  useThemedFavicon();
+
   return (
     <UIProvider>
       <TimerProvider onTimerFinish={handleTimerFinish}>
-        <Layout>
+        <Box
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          fullWidth
+          mt={8}
+        >
           <Chip icon={currentInterval === 'pomodoro' ? 'focus' : 'break'}>
             {label}
           </Chip>
@@ -74,7 +82,7 @@ export const App = () => {
           <Box mt={8}>
             <Settings />
           </Box>
-        </Layout>
+        </Box>
       </TimerProvider>
     </UIProvider>
   );

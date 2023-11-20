@@ -3,11 +3,11 @@ import { Icon, IconNames } from 'components/Icon';
 import { Typography } from 'components/Typography';
 import { styles } from './Chip.styles';
 
-export type ChipProps = {
+type Props = {
   icon: IconNames;
 };
 
-export const Chip = ({ children, icon }: PropsWithChildren<ChipProps>) => (
+export const Chip = ({ children, icon }: PropsWithChildren<Props>) => (
   <div css={styles.container}>
     <Icon color="primaryDark" name={icon} />
 
