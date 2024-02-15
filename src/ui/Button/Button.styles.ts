@@ -20,17 +20,16 @@ export const styles = {
   button:
     (
       size: NonNullable<ButtonProps['size']>,
-      variant: NonNullable<ButtonProps['variant']>
+      variant: NonNullable<ButtonProps['variant']>,
     ) =>
-    (theme: Theme) =>
-      css`
-        border: none;
-        outline: none;
-        cursor: pointer;
-        background: ${variant === 'light'
-          ? 'inherit'
-          : theme.color[background[variant]]};
-        padding: ${padding[size](theme)};
-        border-radius: ${theme.sizing(8)};
-      `,
+    (theme: Theme) => css`
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: ${variant === 'light'
+        ? 'inherit'
+        : theme.color[background[variant]]};
+      padding: ${padding[size](theme)};
+      border-radius: ${theme.sizing(8)};
+    `,
 };

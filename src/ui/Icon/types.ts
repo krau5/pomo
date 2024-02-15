@@ -10,7 +10,7 @@ export const iconNames = [
   'play',
 ] as const;
 
-export type IconNames = typeof iconNames[number];
+export type IconNames = (typeof iconNames)[number];
 
 export type IconProps = {
   name: IconNames;

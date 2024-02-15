@@ -52,7 +52,7 @@ export const TimerProvider = ({
         onTimerFinish();
       }
     },
-    [onTimerFinish]
+    [onTimerFinish],
   );
 
   useEffect(() => {

@@ -18,8 +18,17 @@ export const typographyStyles: Record<
     font-weight: 200;
     line-height: 85%;
 
-    font-variation-settings: 'opsz' 14, 'GRAD' 0, 'slnt' 0, 'XTRA' 468,
-      'XOPQ' 96, 'YOPQ' 79, 'YTLC' 514, 'YTUC' 712, 'YTAS' 750, 'YTDE' -203,
+    font-variation-settings:
+      'opsz' 14,
+      'GRAD' 0,
+      'slnt' 0,
+      'XTRA' 468,
+      'XOPQ' 96,
+      'YOPQ' 79,
+      'YTLC' 514,
+      'YTUC' 712,
+      'YTAS' 750,
+      'YTDE' -203,
       'YTFI' 738;
   `,
   h2: (theme) => css`
@@ -27,8 +36,17 @@ export const typographyStyles: Record<
     font-weight: 800;
     line-height: 85%;
 
-    font-variation-settings: 'opsz' 14, 'GRAD' 0, 'slnt' 0, 'XTRA' 468,
-      'XOPQ' 96, 'YOPQ' 79, 'YTLC' 514, 'YTUC' 712, 'YTAS' 750, 'YTDE' -203,
+    font-variation-settings:
+      'opsz' 14,
+      'GRAD' 0,
+      'slnt' 0,
+      'XTRA' 468,
+      'XOPQ' 96,
+      'YOPQ' 79,
+      'YTLC' 514,
+      'YTUC' 712,
+      'YTAS' 750,
+      'YTDE' -203,
       'YTFI' 738;
   `,
   subtitle1: (theme) => css`
@@ -47,10 +65,9 @@ export const typographyStyles: Record<
 
 export const styles =
   ({ color, notSelectable, nowrap, variant }: Props) =>
-  (theme: Theme) =>
-    css`
-      ${typographyStyles[variant](theme)};
-      ${nowrap && 'white-space: nowrap'};
-      ${notSelectable && 'user-select: none'};
-      color: ${color === 'inherit' ? color : theme.color[color]};
-    `;
+  (theme: Theme) => css`
+    ${typographyStyles[variant](theme)};
+    ${nowrap && 'white-space: nowrap'};
+    ${notSelectable && 'user-select: none'};
+    color: ${color === 'inherit' ? color : theme.color[color]};
+  `;

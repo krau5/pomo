@@ -15,7 +15,7 @@ export const Switch = ({
       setIsChecked(event.target.checked);
       onChange && onChange(event);
     },
-    [onChange]
+    [onChange],
   );
 
   return (

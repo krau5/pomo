@@ -24,7 +24,7 @@ export const useSettings = () => {
 
       dispatch(disableSound());
     },
-    [dispatch]
+    [dispatch],
   );
 
   const toggleDarkMode = useCallback(
@@ -36,21 +36,21 @@ export const useSettings = () => {
 
       dispatch(disableDarkMode());
     },
-    [dispatch]
+    [dispatch],
   );
 
   const updatePomodorosInSessionCount = useCallback(
     (count: string | number) => {
       dispatch(setPomodorosInSession(Number(count)));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const updateIntervals = useCallback(
     (intervals: Intervals) => {
       dispatch(setIntervals(intervals));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return {

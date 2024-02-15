@@ -25,7 +25,7 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
 
   const [intervals, setIntervals] = useState(initialIntervals);
   const [pomodorosInSession, setPomodorosInSession] = useState<string | number>(
-    initialPomodorosInSession
+    initialPomodorosInSession,
   );
 
   const handleClose = useCallback(() => {
@@ -50,28 +50,28 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
         [interval]: event.target.value,
       }));
     },
-    []
+    [],
   );
 
   const handlePomodorosInSessionChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setPomodorosInSession(event.target.value);
     },
-    []
+    [],
   );
 
   const handleThemeChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       toggleDarkMode({ enable: event.target.checked });
     },
-    [toggleDarkMode]
+    [toggleDarkMode],
   );
 
   const handleSoundChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       toggleSound({ enable: event.target.checked });
     },
-    [toggleSound]
+    [toggleSound],
   );
 
   return (

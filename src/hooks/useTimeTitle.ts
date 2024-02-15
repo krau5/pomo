@@ -5,7 +5,7 @@ import { selectCurrentInterval } from 'store/intervals';
 export const useTimeTitle = (
   minutes: string,
   seconds: string,
-  wasTimerStarted: boolean
+  wasTimerStarted: boolean,
 ) => {
   const currentInterval = useAppSelector(selectCurrentInterval);
 

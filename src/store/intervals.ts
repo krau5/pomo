@@ -32,7 +32,7 @@ export const incrementPomodoroCount = createAction('pomodoroCount/increment');
 export const resetPomodoroCount = createAction('pomodoroCount/reset');
 
 export const setPomodorosInSession = createAction<number>(
-  'pomodorosInSession/set'
+  'pomodorosInSession/set',
 );
 
 const intervalsSlice = createSlice({
@@ -59,7 +59,7 @@ const intervalsSlice = createSlice({
       setPomodorosInSession,
       (state, action: PayloadAction<number>) => {
         state.pomodorosInSession = action.payload;
-      }
+      },
     );
   },
 });
@@ -72,20 +72,20 @@ const selectState = (state: RootState) => state.intervals;
 
 export const selectCurrentInterval = createSelector(
   selectState,
-  (state): PomodoroIntervals => state.currentInterval
+  (state): PomodoroIntervals => state.currentInterval,
 );
 
 export const selectIntervals = createSelector(
   selectState,
-  (state): Intervals => state.intervals
+  (state): Intervals => state.intervals,
 );
 
 export const selectPomodoroCount = createSelector(
   selectState,
-  (state): number => state.pomodoroCount
+  (state): number => state.pomodoroCount,
 );
 
 export const selectPomodorosInSession = createSelector(
   selectState,
-  (state): number => state.pomodorosInSession
+  (state): number => state.pomodorosInSession,
 );

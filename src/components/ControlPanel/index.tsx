@@ -28,12 +28,12 @@ export const ControlPanel = () => {
 
   const currentIntervalTime = useMemo(
     () => intervals[currentInterval] * 60,
-    [currentInterval, intervals]
+    [currentInterval, intervals],
   );
 
   const { minutes, seconds } = useMemo(
     () => getTimeLeft(duration, timer),
-    [duration, timer]
+    [duration, timer],
   );
 
   useEffect(() => {

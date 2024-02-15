@@ -16,10 +16,9 @@ export const styles =
     width,
     height,
   }: BoxProps) =>
-  (theme: Theme) =>
-    css`
-      ${display && `display: ${display};`}
-      ${alignItems && `align-items: ${alignItems};`}
+  (theme: Theme) => css`
+    ${display && `display: ${display};`}
+    ${alignItems && `align-items: ${alignItems};`}
       ${justifyContent && `justify-content: ${justifyContent};`}
       ${flexDirection && `flex-direction: ${flexDirection};`}
       
@@ -33,4 +32,4 @@ export const styles =
 
       ${px && `padding: ${theme.sizing(py || 0, px)};`}
       ${py && `padding: ${theme.sizing(py, px || 0)};`}
-    `;
+  `;

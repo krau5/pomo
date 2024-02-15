@@ -19,7 +19,7 @@ export const NumericField = ({
         onChange({ ...event, target: { ...event.target, value } });
       }
     },
-    [onChange]
+    [onChange],
   );
 
   const handleBlur = useCallback(
@@ -38,7 +38,7 @@ export const NumericField = ({
         onChange({ ...event, target: { ...event.target, value: fieldValue } });
       }
     },
-    [max, min, onChange]
+    [max, min, onChange],
   );
 
   return (
