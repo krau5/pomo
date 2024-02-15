@@ -18,14 +18,14 @@ const makeTheme = (themeSettings: StaticThemeSettings): Theme => {
           `${accumulator}${
             typeof size === 'string' ? size : `${size * unit}px`
           } `,
-        ''
+        '',
       );
     },
   };
 };
 
 const defaultThemeSettings = (
-  color: StaticThemeSettings['color']
+  color: StaticThemeSettings['color'],
 ): StaticThemeSettings => ({
   color,
   font: "'Roboto Flex', sans-serif",
@@ -101,7 +101,7 @@ export const UIProvider = ({ children }: PropsWithChildren) => {
   const uiTheme = useAppSelector(selectTheme);
 
   const theme: Theme = makeTheme(
-    defaultThemeSettings(themes[currentInterval][uiTheme])
+    defaultThemeSettings(themes[currentInterval][uiTheme]),
   );
 
   return (

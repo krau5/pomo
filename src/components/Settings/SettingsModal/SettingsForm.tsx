@@ -13,7 +13,7 @@ type Props = {
   intervals: Intervals;
   pomodorosInSession: string | number;
   onIntervalChange: (
-    interval: PomodoroIntervals
+    interval: PomodoroIntervals,
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
   onThemeChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onPomodorosInSessionChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -103,7 +103,7 @@ export const SettingsForm = ({
       pomodorosInSession,
       intervals,
       theme,
-    ]
+    ],
   );
 
   return (

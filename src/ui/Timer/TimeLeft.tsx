@@ -8,7 +8,7 @@ export const TimeLeft = () => {
 
   const { minutes, seconds } = useMemo(
     () => getTimeLeft(duration, timer),
-    [duration, timer]
+    [duration, timer],
   );
 
   return (

@@ -17,7 +17,9 @@ export const styles = {
     margin: ${theme.sizing(49, 'auto', 0)};
     border-radius: ${theme.sizing(4)};
     background: ${theme.color.background};
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.039), 0 5.5px 16px rgba(0, 0, 0, 0.19);
+    box-shadow:
+      0 1px 6px rgba(0, 0, 0, 0.039),
+      0 5.5px 16px rgba(0, 0, 0, 0.19);
     min-width: ${theme.sizing(100)};
 
     @media screen and (max-width: 767px) {

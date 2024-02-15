@@ -13,18 +13,17 @@ const sizeMap: Record<
 
 export const styles =
   (color: IconProps['color'], size: NonNullable<IconProps['size']>) =>
-  (theme: Theme) =>
-    css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  (theme: Theme) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    width: ${sizeMap[size](theme)};
+    height: ${sizeMap[size](theme)};
+
+    & > svg {
+      ${color && `fill: ${color === 'inherit' ? color : theme.color[color]}`};
       width: ${sizeMap[size](theme)};
-      height: ${sizeMap[size](theme)};
-
-      & > svg {
-        ${color && `fill: ${color === 'inherit' ? color : theme.color[color]}`};
-        width: ${sizeMap[size](theme)};
-        height: auto;
-      }
-    `;
+      height: auto;
+    }
+  `;

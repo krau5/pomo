@@ -30,5 +30,5 @@ const selectState = (state: RootState) => state.preferences;
 
 export const selectIsSoundEnabled = createSelector(
   [selectState],
-  (state) => state.soundEnabled
+  (state) => state.soundEnabled,
 );
