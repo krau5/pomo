@@ -1,4 +1,4 @@
-import { Chip } from 'ui/Chip';
+import { Chip } from 'components/Chip';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
 import { PomodoroIntervals } from 'types';

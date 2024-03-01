@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Icon } from 'ui/Icon';
+import { Icon } from 'components/Icon';
 import { ButtonProps } from './types';
 import { styles } from './Button.styles';
 
