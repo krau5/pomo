@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
-import { selectTheme } from 'store/theme';
+import { selectTheme } from 'store/settings';
 
 const link = document.getElementById('favicon') as HTMLLinkElement;
 

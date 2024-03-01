@@ -2,9 +2,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { intervals } from './intervals';
 import { settings } from './settings';
-import { theme } from './theme';
 
-const reducer = combineReducers({ intervals, preferences: settings, theme });
+const reducer = combineReducers({ intervals, settings });
 
 export const store = configureStore({
   reducer,

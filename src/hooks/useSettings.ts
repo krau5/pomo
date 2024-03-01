@@ -1,7 +1,13 @@
 import { useCallback } from 'react';
-import { useAppDispatch } from 'store';
-import { enableSound, disableSound } from 'store/settings';
-import { disableDarkMode, enableDarkMode } from 'store/theme';
+import { useAppDispatch, useAppSelector } from 'store';
+import {
+  enableSound,
+  disableSound,
+  disableDarkMode,
+  enableDarkMode,
+  selectIsSoundEnabled,
+  selectTheme,
+} from 'store/settings';
 import {
   Intervals,
   setIntervals,
@@ -14,6 +20,9 @@ type Props = {
 
 export const useSettings = () => {
   const dispatch = useAppDispatch();
+
+  const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
+  const theme = useAppSelector(selectTheme);
 
   const toggleSound = useCallback(
     ({ enable }: Props) => {
@@ -54,7 +63,9 @@ export const useSettings = () => {
   );
 
   return {
+    isSoundEnabled,
     toggleSound,
+    theme,
     toggleDarkMode,
     updatePomodorosInSessionCount,
     updateIntervals,
