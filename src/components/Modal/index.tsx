@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { Button } from 'ui/Button';
-import { Typography } from 'ui/Typography';
+import { Button } from 'components/Button';
+import { Typography } from 'components/Typography';
 import { styles } from './Modal.styles';
 
 export type ModalProps = {

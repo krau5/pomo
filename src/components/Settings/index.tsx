@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Button } from 'ui/Button';
+import { Button } from 'components/Button';
 import { SettingsModal } from './SettingsModal';
 
 export const Settings = () => {

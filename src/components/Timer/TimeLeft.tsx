@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Typography } from 'ui/Typography';
+import { Typography } from 'components/Typography';
 import { getTimeLeft } from 'utils/getTimeLeft';
 import { useTimerContext } from './TimerContext';
 

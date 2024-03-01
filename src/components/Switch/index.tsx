@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react';
-import { TextFieldProps } from 'ui/TextField';
+import { TextFieldProps } from 'components/TextField';
 import { styles } from './Switch.styles';
 
 export const Switch = ({
