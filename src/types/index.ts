@@ -1,5 +1,7 @@
 export type PomodoroIntervals = 'pomodoro' | 'shortBreak' | 'longBreak';
 
+export type AppTheme = 'light' | 'dark';
+
 export type ThemeColorName =
   | 'primaryLight'
   | 'primary'

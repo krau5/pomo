@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
 import { ThemeProvider, Global } from '@emotion/react';
-import { PomodoroIntervals, StaticThemeSettings, Theme } from 'types';
+import { AppTheme, PomodoroIntervals, StaticThemeSettings, Theme } from 'types';
 import { useAppSelector } from 'store';
-import { selectTheme } from 'store/theme';
+import { selectTheme } from 'store/settings';
 import { selectCurrentInterval } from 'store/intervals';
 import { styles } from './UIProvider.styles';
 
@@ -35,7 +35,7 @@ const defaultThemeSettings = (
 const transparentBlack = '#00000026';
 const transparentWhite = '#FFFFFF26';
 
-const common = (theme: 'light' | 'dark' = 'light') => ({
+const common = (theme: AppTheme = 'light') => ({
   lightGray: '#FAFAFA',
   darkGray: '#C4C4C4',
   contrastingTransparent:
@@ -44,7 +44,7 @@ const common = (theme: 'light' | 'dark' = 'light') => ({
 
 const themes: Record<
   PomodoroIntervals,
-  Record<'light' | 'dark', StaticThemeSettings['color']>
+  Record<AppTheme, StaticThemeSettings['color']>
 > = {
   pomodoro: {
     light: {

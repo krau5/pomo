@@ -17,6 +17,8 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
   const initialPomodorosInSession = useAppSelector(selectPomodorosInSession);
 
   const {
+    isSoundEnabled,
+    theme,
     toggleSound,
     toggleDarkMode,
     updatePomodorosInSessionCount,
@@ -77,6 +79,8 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
   return (
     <Modal isOpened={isOpened} onClose={handleClose} title="Settings">
       <SettingsForm
+        isSoundEnabled={isSoundEnabled}
+        theme={theme}
         intervals={intervals}
         pomodorosInSession={pomodorosInSession}
         onIntervalChange={handleIntervalChange}

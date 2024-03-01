@@ -35,13 +35,16 @@ export const useIntervalSequence = () => {
   const onTimerFinish = useCallback(() => {
     const nextInterval = getNextInterval();
 
-    if (nextInterval === 'longBreak') {
-      dispatch(resetPomodoroCount());
-    } else if (nextInterval !== 'pomodoro') {
+    dispatch(setCurrentInterval(nextInterval));
+
+    if (nextInterval === 'shortBreak') {
       dispatch(incrementPomodoroCount());
+      return;
     }
 
-    dispatch(setCurrentInterval(nextInterval));
+    if (nextInterval === 'longBreak') {
+      dispatch(resetPomodoroCount());
+    }
   }, [dispatch, getNextInterval]);
 
   useEffect(() => {
