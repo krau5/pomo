@@ -4,7 +4,7 @@ import { useAppSelector } from 'store';
 import { selectIntervals, selectPomodorosInSession } from 'store/intervals';
 import { useSettings } from 'hooks';
 import { PomodoroIntervals } from 'types';
-import { Modal } from 'ui/Modal';
+import { Modal } from 'components/Modal';
 import { SettingsForm } from './SettingsForm';
 
 type Props = {
@@ -17,6 +17,8 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
   const initialPomodorosInSession = useAppSelector(selectPomodorosInSession);
 
   const {
+    isSoundEnabled,
+    theme,
     toggleSound,
     toggleDarkMode,
     updatePomodorosInSessionCount,
@@ -77,6 +79,8 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
   return (
     <Modal isOpened={isOpened} onClose={handleClose} title="Settings">
       <SettingsForm
+        isSoundEnabled={isSoundEnabled}
+        theme={theme}
         intervals={intervals}
         pomodorosInSession={pomodorosInSession}
         onIntervalChange={handleIntervalChange}

@@ -1,12 +1,9 @@
 import { ChangeEvent, useMemo } from 'react';
-import { TextField } from 'ui/TextField';
-import { PomodoroIntervals } from 'types';
-import { Box } from 'ui/Box';
-import { Typography } from 'ui/Typography';
-import { Switch } from 'ui/Switch';
-import { useAppSelector } from 'store';
-import { selectTheme } from 'store/theme';
-import { selectIsSoundEnabled } from 'store/settings';
+import { TextField } from 'components/TextField';
+import { AppTheme, PomodoroIntervals } from 'types';
+import { Box } from 'components/Box';
+import { Typography } from 'components/Typography';
+import { Switch } from 'components/Switch';
 import { Intervals } from 'store/intervals';
 
 type Props = {
@@ -18,6 +15,8 @@ type Props = {
   onThemeChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onPomodorosInSessionChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onSoundChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  theme: AppTheme;
+  isSoundEnabled: boolean;
 };
 
 export const SettingsForm = ({
@@ -27,10 +26,9 @@ export const SettingsForm = ({
   onThemeChange,
   onPomodorosInSessionChange,
   onSoundChange,
+  theme,
+  isSoundEnabled,
 }: Props) => {
-  const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
-  const theme = useAppSelector(selectTheme);
-
   const settings = useMemo(
     () => [
       {

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { Theme } from 'types';
-import { IconProps } from 'ui/Icon/index';
+import { IconProps } from 'components/Icon/index';
 
 const sizeMap: Record<
   NonNullable<IconProps['size']>,
