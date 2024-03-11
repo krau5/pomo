@@ -10,16 +10,15 @@ This repo contains a web-version of a simple multiplatform Pomodoro Timer. <br /
 Pomodoro will help you manage your time and let you focus on any tasks. <br />
 The app is written using React.js with a Vite as a bundler
 
-Please, feel free to fork, add features and create pull requests so that everybody can experience the features you've built.
+Please, feel free to fork, add features and create pull requests so that everybody can experience the features you've built. <br />
 All the contributions are highly encouraged.
 
 ## Installation and local launch
 
 1. Clone this repo: `git clone https://github.com/krau5/pomodoro.git`
 2. Run `npm ci` in the root folder
-3. Fill all the fields in `.env` using your firebase data
-4. Run `npm run dev`
-5. If you want to use pre-commit hooks, you should also run `npm run prepare`
+3. Run `npm run dev`
+4. If you want to use pre-commit hooks, you should also run `npm run prepare`
 
 ## License
 
