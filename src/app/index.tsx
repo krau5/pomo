@@ -4,8 +4,12 @@ import { TimerProvider } from 'components/Timer';
 import { useThemedFavicon, useIntervalSequence } from 'hooks';
 import { ControlPanel } from 'components/ControlPanel';
 import { IntervalChip } from 'components/IntervalChip';
+import { useAppSelector } from 'store';
+import { selectCurrentInterval } from 'store/intervals';
 
 export const App = () => {
+  const currentInterval = useAppSelector(selectCurrentInterval);
+
   const { onTimerFinish } = useIntervalSequence();
 
   useThemedFavicon();
@@ -20,7 +24,7 @@ export const App = () => {
           fullWidth
           mt={8}
         >
-          <IntervalChip />
+          <IntervalChip interval={currentInterval} />
 
           <Box mt={8}>
             <ControlPanel />

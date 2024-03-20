@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 import { Typography } from 'components/Typography';
-import { getTimeLeft } from 'utils/getTimeLeft';
+import { getRemainingTime } from 'utils';
 import { useTimerContext } from './TimerContext';
 
 export const TimeLeft = () => {
   const { isPaused, timer, duration } = useTimerContext();
 
   const { minutes, seconds } = useMemo(
-    () => getTimeLeft(duration, timer),
+    () => getRemainingTime(duration, timer),
     [duration, timer],
   );
 

@@ -3,7 +3,7 @@
     "target": "esnext",
     "lib": ["DOM", "DOM.Iterable", "esnext"],
     "allowJs": false,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -16,10 +16,11 @@
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
-    "types": ["vite/client", "node"],
     "paths": {
       "*": ["./src/*"],
+      "testUtils": ["./test/testUtils"]
     },
+    "types": ["vite/client", "jest", "@testing-library/jest-dom", "node"]
   },
-  "include": ["src"]
+  "include": ["src", "test", "jest.config.ts", "vite.config.ts"]
 }

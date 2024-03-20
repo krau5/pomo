@@ -11,8 +11,8 @@ import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
 import { selectIsSoundEnabled } from 'store/settings';
-import { getTimeLeft } from 'utils/getTimeLeft';
-import { useTimeTitle } from 'hooks/useTimeTitle';
+import { getRemainingTime } from 'utils';
+import { useTimeTitle } from 'hooks';
 
 export const ControlPanel = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -37,7 +37,7 @@ export const ControlPanel = () => {
   );
 
   const { minutes, seconds } = useMemo(
-    () => getTimeLeft(duration, timer),
+    () => getRemainingTime(duration, timer),
     [duration, timer],
   );
 
