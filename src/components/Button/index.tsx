@@ -8,12 +8,12 @@ export const Button = ({
   iconColor = 'primaryDark',
   icon,
   iconSize = 'large',
-  onClick,
   size = 'medium',
   type = 'button',
   variant = 'primary',
+  ...props
 }: PropsWithChildren<ButtonProps>) => (
-  <button css={styles.button(size, variant)} onClick={onClick} type={type}>
+  <button css={styles.button(size, variant)} type={type} {...props}>
     {icon && <Icon color={iconColor} name={icon} size={iconSize} />}
 
     {children}

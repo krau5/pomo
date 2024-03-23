@@ -1,18 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 import { Settings } from 'components/Settings';
-import {
-  FinishTimer,
-  TimeLeft,
-  ToggleTimer,
-  useTimerContext,
-} from 'components/Timer';
+import { useTimerContext } from 'components/Timer';
 import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
 import { selectIsSoundEnabled } from 'store/settings';
-import { getTimeLeft } from 'utils/getTimeLeft';
-import { useTimeTitle } from 'hooks/useTimeTitle';
+import { getRemainingTime } from 'utils';
+import { useTimeTitle } from 'hooks';
+import { RemainingTime } from './RemainingTime';
+import { ToggleTimer } from './ToggleTimer';
+import { SkipInterval } from './SkipInterval';
 
 export const ControlPanel = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -37,7 +35,7 @@ export const ControlPanel = () => {
   );
 
   const { minutes, seconds } = useMemo(
-    () => getTimeLeft(duration, timer),
+    () => getRemainingTime(duration, timer),
     [duration, timer],
   );
 
@@ -68,7 +66,7 @@ export const ControlPanel = () => {
 
   return (
     <Box display="flex" alignItems="center" flexDirection="column">
-      <TimeLeft />
+      <RemainingTime />
 
       <Box display="flex" alignItems="center" mt={8}>
         <Settings />
@@ -77,7 +75,7 @@ export const ControlPanel = () => {
           <ToggleTimer duration={currentIntervalTime} initialCount={timer} />
         </Box>
 
-        <FinishTimer />
+        <SkipInterval />
       </Box>
 
       <audio src="/sounds/ring.mp3" ref={audioRef} />

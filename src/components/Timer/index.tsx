@@ -82,8 +82,4 @@ export const TimerProvider = ({
   );
 };
 
-export * from './TimeLeft';
-export * from './ToggleTimer';
-export * from './FinishTimer';
-
 export * from './TimerContext';

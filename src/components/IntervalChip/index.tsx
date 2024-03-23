@@ -1,7 +1,9 @@
 import { Chip } from 'components/Chip';
-import { useAppSelector } from 'store';
-import { selectCurrentInterval } from 'store/intervals';
 import { PomodoroIntervals } from 'types';
+
+type Props = {
+  interval: PomodoroIntervals;
+};
 
 const chipLabels: Record<PomodoroIntervals, string> = {
   pomodoro: 'Focus',
@@ -9,13 +11,14 @@ const chipLabels: Record<PomodoroIntervals, string> = {
   longBreak: 'Long Break',
 };
 
-export const IntervalChip = () => {
-  const currentInterval = useAppSelector(selectCurrentInterval);
-
-  const label = chipLabels[currentInterval];
+export const IntervalChip = ({ interval }: Props) => {
+  const label = chipLabels[interval];
 
   return (
-    <Chip icon={currentInterval === 'pomodoro' ? 'focus' : 'break'}>
+    <Chip
+      icon={interval === 'pomodoro' ? 'focus' : 'break'}
+      data-testid="interval-chip"
+    >
       {label}
     </Chip>
   );

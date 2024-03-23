@@ -7,8 +7,12 @@ type Props = {
   icon: IconNames;
 };
 
-export const Chip = ({ children, icon }: PropsWithChildren<Props>) => (
-  <div css={styles.container}>
+export const Chip = ({
+  children,
+  icon,
+  ...props
+}: PropsWithChildren<Props>) => (
+  <div css={styles.container} {...props}>
     <Icon color="primaryDark" name={icon} />
 
     <Typography color="primaryDark" nowrap variant="subtitle2">

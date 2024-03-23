@@ -32,7 +32,7 @@ export const useIntervalSequence = () => {
     return 'shortBreak';
   }, [currentInterval, pomodoroCount, pomodorosInSession]);
 
-  const onTimerFinish = useCallback(() => {
+  const onIntervalFinish = useCallback(() => {
     const nextInterval = getNextInterval();
 
     dispatch(setCurrentInterval(nextInterval));
@@ -52,5 +52,5 @@ export const useIntervalSequence = () => {
     dispatch(resetPomodoroCount());
   }, [dispatch, pomodorosInSession]);
 
-  return { onTimerFinish };
+  return { onIntervalFinish };
 };
