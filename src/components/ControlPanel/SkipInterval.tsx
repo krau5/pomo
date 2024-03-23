@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { Button } from 'components/Button';
-import { useTimerContext } from './TimerContext';
+import { useTimerContext } from 'components/Timer';
 
-export const FinishTimer = () => {
+export const SkipInterval = () => {
   const { finish } = useTimerContext();
 
   const handleFinish = useCallback(() => {
@@ -15,6 +15,7 @@ export const FinishTimer = () => {
       icon="forward"
       onClick={handleFinish}
       variant="secondary"
+      data-testid="skip-interval"
     />
   );
 };

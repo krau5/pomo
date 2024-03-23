@@ -27,6 +27,7 @@ export const Typography = ({
   notSelectable = false,
   nowrap = false,
   variant = 'body',
+  ...props
 }: PropsWithChildren<TypographyProps>) => {
   const TypographyTag = TypographyTags[variant];
 
@@ -34,6 +35,7 @@ export const Typography = ({
     <TypographyTag
       css={styles({ color, notSelectable, nowrap, variant })}
       className={variant}
+      {...props}
     >
       {children}
     </TypographyTag>

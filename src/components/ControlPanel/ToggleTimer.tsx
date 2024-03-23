@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
+import { useTimerContext } from 'components/Timer';
 import { Button } from 'components/Button';
-import { useTimerContext } from './TimerContext';
 
 type Props = {
   duration: number;
@@ -35,6 +35,7 @@ export const ToggleTimer = ({
       icon={isPaused ? 'play' : 'pause'}
       size="large"
       onClick={handleToggle}
+      data-testid="toggle-timer"
     />
   );
 };

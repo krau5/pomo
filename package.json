@@ -6,7 +6,8 @@
     "build": "vite build",
     "preview": "vite preview --host --port 3000",
     "lint": "eslint ./src --fix --ext .ts --ext .tsx",
-    "prepare": "husky install",
+    "test": "jest",
+    "prepare": "husky",
     "check-types": "tsc"
   },
   "dependencies": {

@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
+import { useTimerContext } from 'components/Timer';
 import { Typography } from 'components/Typography';
 import { getRemainingTime } from 'utils';
-import { useTimerContext } from './TimerContext';
 
-export const TimeLeft = () => {
+export const RemainingTime = () => {
   const { isPaused, timer, duration } = useTimerContext();
 
   const { minutes, seconds } = useMemo(
@@ -16,6 +16,7 @@ export const TimeLeft = () => {
       color="primaryDark"
       notSelectable
       variant={isPaused ? 'h1' : 'h2'}
+      data-testid="remaining-time"
     >
       {minutes}
       <br />

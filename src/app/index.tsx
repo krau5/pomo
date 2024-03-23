@@ -1,22 +1,23 @@
+import { Provider } from 'react-redux';
 import { UIProvider } from 'components/UIProvider';
 import { Box } from 'components/Box';
 import { TimerProvider } from 'components/Timer';
 import { useThemedFavicon, useIntervalSequence } from 'hooks';
 import { ControlPanel } from 'components/ControlPanel';
 import { IntervalChip } from 'components/IntervalChip';
-import { useAppSelector } from 'store';
+import { store, useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
 
-export const App = () => {
+const PomoInterface = () => {
   const currentInterval = useAppSelector(selectCurrentInterval);
 
-  const { onTimerFinish } = useIntervalSequence();
+  const { onIntervalFinish } = useIntervalSequence();
 
   useThemedFavicon();
 
   return (
     <UIProvider>
-      <TimerProvider onTimerFinish={onTimerFinish}>
+      <TimerProvider onTimerFinish={onIntervalFinish}>
         <Box
           display="flex"
           alignItems="center"
@@ -34,3 +35,9 @@ export const App = () => {
     </UIProvider>
   );
 };
+
+export const App = () => (
+  <Provider store={store}>
+    <PomoInterface />
+  </Provider>
+);

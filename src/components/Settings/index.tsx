@@ -20,6 +20,7 @@ export const Settings = () => {
         icon="dots"
         onClick={handleOpen}
         variant="secondary"
+        data-testid="open-settings"
       />
 
       <SettingsModal isOpened={isOpened} onClose={handleClose} />
