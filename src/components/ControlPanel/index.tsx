@@ -6,9 +6,8 @@ import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
 import { selectIsSoundEnabled } from 'store/settings';
-import { getRemainingTime } from 'utils';
 import { useTimeTitle } from 'hooks';
-import { RemainingTime } from './RemainingTime';
+import { getRemainingTime, RemainingTime } from './RemainingTime';
 import { ToggleTimer } from './ToggleTimer';
 import { SkipInterval } from './SkipInterval';
 
