@@ -18,9 +18,8 @@
     "baseUrl": ".",
     "paths": {
       "*": ["./src/*"],
-      "testUtils": ["./test/testUtils"]
     },
-    "types": ["vite/client", "jest", "@testing-library/jest-dom", "node"]
+    "types": ["vite/client", "node"]
   },
-  "include": ["src", "test", "jest.config.ts", "vite.config.ts"]
+  "include": ["src", "vite.config.ts"]
 }

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useTimerContext } from 'components/Timer';
 import { Typography } from 'components/Typography';
-import { getRemainingTime } from 'utils';
+import { getRemainingTime } from './getRemainingTime';
 
 export const RemainingTime = () => {
   const { isPaused, timer, duration } = useTimerContext();
@@ -24,3 +24,5 @@ export const RemainingTime = () => {
     </Typography>
   );
 };
+
+export * from './getRemainingTime';

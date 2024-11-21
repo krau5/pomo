@@ -1,6 +1,7 @@
 # IDE Settings
 .vscode/
 .idea/
+.zed/
 
 # Dependencies
 node_modules/
