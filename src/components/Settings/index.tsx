@@ -1,29 +1,20 @@
-import { useCallback, useState } from 'react';
 import { Button } from 'components/Button';
+import { useOpen } from 'hooks';
 import { SettingsModal } from './SettingsModal';
 
 export const Settings = () => {
-  const [isOpened, setIsOpened] = useState(false);
-
-  const handleOpen = useCallback(() => {
-    setIsOpened(true);
-  }, []);
-
-  const handleClose = useCallback(() => {
-    setIsOpened(false);
-  }, []);
+  const { isOpened, open, close } = useOpen();
 
   return (
     <>
       <Button
         aria-label="Open settings"
         icon="dots"
-        onClick={handleOpen}
+        onClick={open}
         variant="secondary"
-        data-testid="open-settings"
       />
 
-      <SettingsModal isOpened={isOpened} onClose={handleClose} />
+      <SettingsModal isOpened={isOpened} onClose={close} />
     </>
   );
 };

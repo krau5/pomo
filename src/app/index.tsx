@@ -4,7 +4,7 @@ import { Box } from 'components/Box';
 import { TimerProvider } from 'components/Timer';
 import { useThemedFavicon, useIntervalSequence } from 'hooks';
 import { ControlPanel } from 'components/ControlPanel';
-import { IntervalChip } from 'components/IntervalChip';
+import { IntervalChip } from 'features/IntervalChip';
 import { store, useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
 import { RemainingTime } from 'components/RemainingTime';

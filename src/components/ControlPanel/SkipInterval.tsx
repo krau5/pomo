@@ -15,7 +15,6 @@ export const SkipInterval = () => {
       icon="forward"
       onClick={handleFinish}
       variant="secondary"
-      data-testid="skip-interval"
     />
   );
 };
