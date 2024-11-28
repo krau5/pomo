@@ -7,7 +7,7 @@ import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
 import { selectIsSoundEnabled } from 'store/settings';
 import { useTimeTitle } from 'hooks';
-import { getRemainingTime, RemainingTime } from './RemainingTime';
+import { getRemainingTime } from 'components/RemainingTime';
 import { ToggleTimer } from './ToggleTimer';
 import { SkipInterval } from './SkipInterval';
 
@@ -64,18 +64,14 @@ export const ControlPanel = () => {
   useTimeTitle(minutes, seconds, wasOnceStarted);
 
   return (
-    <Box display="flex" alignItems="center" flexDirection="column">
-      <RemainingTime />
+    <Box display="flex" alignItems="center" mt={8}>
+      <Settings />
 
-      <Box display="flex" alignItems="center" mt={8}>
-        <Settings />
-
-        <Box px={4}>
-          <ToggleTimer duration={currentIntervalTime} initialCount={timer} />
-        </Box>
-
-        <SkipInterval />
+      <Box px={4}>
+        <ToggleTimer duration={currentIntervalTime} initialCount={timer} />
       </Box>
+
+      <SkipInterval />
 
       <audio src="/sounds/ring.mp3" ref={audioRef} />
     </Box>

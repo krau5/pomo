@@ -7,6 +7,7 @@ import { ControlPanel } from 'components/ControlPanel';
 import { IntervalChip } from 'components/IntervalChip';
 import { store, useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
+import { RemainingTime } from 'components/RemainingTime';
 
 const PomoInterface = () => {
   const currentInterval = useAppSelector(selectCurrentInterval);
@@ -22,12 +23,20 @@ const PomoInterface = () => {
           display="flex"
           alignItems="center"
           flexDirection="column"
-          fullWidth
+          width="100%"
           mt={8}
         >
           <IntervalChip interval={currentInterval} />
 
-          <Box mt={8}>
+          <Box
+            display="flex"
+            alignItems="center"
+            flexDirection="column"
+            mt={8}
+            gap={8}
+          >
+            <RemainingTime />
+
             <ControlPanel />
           </Box>
         </Box>
