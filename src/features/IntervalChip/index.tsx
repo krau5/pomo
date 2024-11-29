@@ -15,11 +15,6 @@ export const IntervalChip = ({ interval }: Props) => {
   const label = chipLabels[interval];
 
   return (
-    <Chip
-      icon={interval === 'pomodoro' ? 'focus' : 'break'}
-      data-testid="interval-chip"
-    >
-      {label}
-    </Chip>
+    <Chip icon={interval === 'pomodoro' ? 'focus' : 'break'}>{label}</Chip>
   );
 };

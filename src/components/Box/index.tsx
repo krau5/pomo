@@ -1,26 +1,17 @@
-import { PropsWithChildren } from 'react';
-import { styles } from './Box.styles';
-import { BoxProps } from './types';
+import type { HTMLProps, PropsWithChildren } from 'react';
+import { forwardRef } from 'react';
+import type { BoxProps } from './types';
+import { useBox } from './Box.styles';
 
-export const Box = ({
-  children,
-  display = 'block',
-  alignItems = 'stretch',
-  justifyContent = 'flex-start',
-  flexDirection = 'row',
-  fullWidth = false,
-  ...props
-}: PropsWithChildren<BoxProps>) => (
-  <div
-    css={styles({
-      display,
-      alignItems,
-      justifyContent,
-      flexDirection,
-      fullWidth,
-      ...props,
-    })}
-  >
-    {children}
-  </div>
-);
+export const Box = forwardRef<
+  HTMLDivElement,
+  PropsWithChildren<BoxProps> & HTMLProps<HTMLDivElement>
+>(({ children, ...props }, ref) => {
+  const { boxStyle, ...attributes } = useBox({ ...props });
+
+  return (
+    <div css={boxStyle} {...attributes} ref={ref}>
+      {children}
+    </div>
+  );
+});

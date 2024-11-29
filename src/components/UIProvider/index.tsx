@@ -13,13 +13,15 @@ const makeTheme = (themeSettings: StaticThemeSettings): Theme => {
     ...theme,
     unit,
     sizing: (...sizes) => {
-      return sizes.reduce<string>(
-        (accumulator, size) =>
-          `${accumulator}${
+      return sizes.reduce<string>((accumulator, size) => {
+        if (size !== undefined) {
+          return `${accumulator}${
             typeof size === 'string' ? size : `${size * unit}px`
-          } `,
-        '',
-      );
+          } `;
+        }
+
+        return accumulator;
+      }, '');
     },
   };
 };

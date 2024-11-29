@@ -35,7 +35,6 @@ export const ToggleTimer = ({
       icon={isPaused ? 'play' : 'pause'}
       size="large"
       onClick={handleToggle}
-      data-testid="toggle-timer"
     />
   );
 };

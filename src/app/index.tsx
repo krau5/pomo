@@ -2,16 +2,19 @@ import { Provider } from 'react-redux';
 import { UIProvider } from 'components/UIProvider';
 import { Box } from 'components/Box';
 import { TimerProvider } from 'components/Timer';
-import { useThemedFavicon, useIntervalSequence } from 'hooks';
-import { ControlPanel } from 'components/ControlPanel';
-import { IntervalChip } from 'components/IntervalChip';
+import { useThemedFavicon, useIntervalSequence, useOpen } from 'hooks';
+import { ControlPanel } from 'features/ControlPanel';
+import { IntervalChip } from 'features/IntervalChip';
 import { store, useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
+import { RemainingTime } from 'features/RemainingTime';
+import { SettingsModal } from 'features/SettingsModal';
 
 const PomoInterface = () => {
   const currentInterval = useAppSelector(selectCurrentInterval);
 
   const { onIntervalFinish } = useIntervalSequence();
+  const { isOpened, open, close } = useOpen();
 
   useThemedFavicon();
 
@@ -22,15 +25,25 @@ const PomoInterface = () => {
           display="flex"
           alignItems="center"
           flexDirection="column"
-          fullWidth
+          width="100%"
           mt={8}
         >
           <IntervalChip interval={currentInterval} />
 
-          <Box mt={8}>
-            <ControlPanel />
+          <Box
+            display="flex"
+            alignItems="center"
+            flexDirection="column"
+            mt={8}
+            gap={8}
+          >
+            <RemainingTime />
+
+            <ControlPanel onSettingsClick={open} />
           </Box>
         </Box>
+
+        <SettingsModal isOpened={isOpened} onClose={close} />
       </TimerProvider>
     </UIProvider>
   );

@@ -8,8 +8,8 @@ import { Modal } from 'components/Modal';
 import { SettingsForm } from './SettingsForm';
 
 type Props = {
-  isOpened?: boolean;
-  onClose?: () => void;
+  isOpened: boolean;
+  onClose: () => void;
 };
 
 export const SettingsModal = ({ isOpened, onClose }: Props) => {

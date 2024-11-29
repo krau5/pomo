@@ -16,7 +16,6 @@ export const RemainingTime = () => {
       color="primaryDark"
       notSelectable
       variant={isPaused ? 'h1' : 'h2'}
-      data-testid="remaining-time"
     >
       {minutes}
       <br />
