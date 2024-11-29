@@ -1,17 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { shallowEqual } from 'react-redux';
-import { Settings } from 'components/Settings';
+import { getRemainingTime } from 'features/RemainingTime';
 import { useTimerContext } from 'components/Timer';
 import { Box } from 'components/Box';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval, selectIntervals } from 'store/intervals';
 import { selectIsSoundEnabled } from 'store/settings';
 import { useTimeTitle } from 'hooks';
-import { getRemainingTime } from 'components/RemainingTime';
+import { Button } from 'components/Button';
 import { ToggleTimer } from './ToggleTimer';
 import { SkipInterval } from './SkipInterval';
 
-export const ControlPanel = () => {
+type Props = {
+  onSettingsClick: () => void;
+};
+
+export const ControlPanel = ({ onSettingsClick }: Props) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const intervals = useAppSelector(selectIntervals, shallowEqual);
@@ -65,7 +69,12 @@ export const ControlPanel = () => {
 
   return (
     <Box display="flex" alignItems="center" mt={8}>
-      <Settings />
+      <Button
+        aria-label="Open settings"
+        icon="dots"
+        onClick={onSettingsClick}
+        variant="secondary"
+      />
 
       <Box px={4}>
         <ToggleTimer duration={currentIntervalTime} initialCount={timer} />
