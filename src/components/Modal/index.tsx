@@ -1,25 +1,14 @@
 import { PropsWithChildren } from 'react';
 import { Button } from 'components/Button';
 import { Typography } from 'components/Typography';
+import { useClickAway } from 'hooks';
 import { styles } from './Modal.styles';
 
 export type ModalProps = {
-  isOpened?: boolean;
-  onClose?: () => void;
+  isOpened: boolean;
+  onClose: () => void;
   title: string;
 };
-
-const Overlay = ({ children }: PropsWithChildren) => (
-  <div css={styles.overlay}>{children}</div>
-);
-
-const ModalHeader = ({ children }: PropsWithChildren) => (
-  <header css={styles.header}>{children}</header>
-);
-
-const ModalContent = ({ children }: PropsWithChildren) => (
-  <div css={styles.content}>{children}</div>
-);
 
 export const Modal = ({
   children,
@@ -27,14 +16,16 @@ export const Modal = ({
   onClose,
   title,
 }: PropsWithChildren<ModalProps>) => {
+  const ref = useClickAway<HTMLDivElement>(isOpened, onClose);
+
   if (!isOpened) {
     return null;
   }
 
   return (
-    <Overlay>
-      <div css={styles.modal}>
-        <ModalHeader>
+    <div css={styles.overlay}>
+      <div css={styles.modal} ref={ref}>
+        <header css={styles.header}>
           <Typography variant="subtitle1">{title}</Typography>
 
           <Button
@@ -44,10 +35,10 @@ export const Modal = ({
             size="small"
             variant="light"
           />
-        </ModalHeader>
+        </header>
 
-        <ModalContent>{children}</ModalContent>
+        <div css={styles.content}>{children}</div>
       </div>
-    </Overlay>
+    </div>
   );
 };

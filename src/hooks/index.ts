@@ -1,3 +1,4 @@
+export * from './useClickAway';
 export * from './useIntervalSequence';
 export * from './useOpen';
 export * from './useSettings';
