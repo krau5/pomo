@@ -34,9 +34,7 @@ export const SettingsModal = ({ isOpened, onClose }: Props) => {
     updateIntervals(intervals);
     updatePomodorosInSessionCount(pomodorosInSession);
 
-    if (onClose) {
-      onClose();
-    }
+    onClose();
   }, [
     updateIntervals,
     intervals,
