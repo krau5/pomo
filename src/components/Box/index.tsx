@@ -1,12 +1,12 @@
 import type { HTMLProps, PropsWithChildren } from 'react';
-import { forwardRef } from 'react';
 import type { BoxProps } from './types';
 import { useBox } from './Box.styles';
 
-export const Box = forwardRef<
-  HTMLDivElement,
-  PropsWithChildren<BoxProps> & HTMLProps<HTMLDivElement>
->(({ children, ...props }, ref) => {
+export const Box = ({
+  children,
+  ref,
+  ...props
+}: PropsWithChildren<BoxProps> & HTMLProps<HTMLDivElement>) => {
   const { boxStyle, ...attributes } = useBox({ ...props });
 
   return (
@@ -14,4 +14,4 @@ export const Box = forwardRef<
       {children}
     </div>
   );
-});
+};

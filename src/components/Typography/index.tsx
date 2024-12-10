@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { jsx } from '@emotion/react';
 import { ThemeColorName } from 'types';
 import { styles } from './Typography.styles';
 import { TypographyVariants } from './types';
@@ -12,7 +13,7 @@ type TypographyProps = {
 
 const TypographyTags: Record<
   NonNullable<TypographyProps['variant']>,
-  keyof JSX.IntrinsicElements
+  keyof jsx.JSX.IntrinsicElements
 > = {
   h1: 'h1',
   h2: 'h2',

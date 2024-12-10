@@ -5,6 +5,4 @@ const rootNode = document.getElementById('root');
 
 const root = createRoot(rootNode!);
 
-const app = <App />;
-
-root.render(app);
+root.render(<App />);

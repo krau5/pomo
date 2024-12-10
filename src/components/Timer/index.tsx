@@ -62,7 +62,7 @@ export const TimerProvider = ({
   }, [processWorkerEvent]);
 
   return (
-    <TimerContext.Provider
+    <TimerContext
       value={{
         isPaused,
         setIsPaused,
@@ -78,7 +78,7 @@ export const TimerProvider = ({
       }}
     >
       {children}
-    </TimerContext.Provider>
+    </TimerContext>
   );
 };
 

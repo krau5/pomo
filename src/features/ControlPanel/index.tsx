@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const ControlPanel = ({ onSettingsClick }: Props) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const intervals = useAppSelector(selectIntervals, shallowEqual);
   const currentInterval = useAppSelector(selectCurrentInterval);
