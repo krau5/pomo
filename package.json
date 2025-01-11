@@ -6,6 +6,7 @@
     "build": "vite build",
     "preview": "vite preview --host --port 3000",
     "lint": "eslint ./src --fix --ext .ts --ext .tsx",
+    "deploy": "surge --project ./dist --domain pomodorro.surge.sh",
     "prepare": "husky",
     "check-types": "tsc"
   },
