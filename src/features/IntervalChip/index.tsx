@@ -6,7 +6,7 @@ type Props = {
 };
 
 const chipLabels: Record<PomodoroIntervals, string> = {
-  pomodoro: 'Focus',
+  focus: 'Focus',
   shortBreak: 'Short Break',
   longBreak: 'Long Break',
 };
@@ -14,7 +14,5 @@ const chipLabels: Record<PomodoroIntervals, string> = {
 export const IntervalChip = ({ interval }: Props) => {
   const label = chipLabels[interval];
 
-  return (
-    <Chip icon={interval === 'pomodoro' ? 'focus' : 'break'}>{label}</Chip>
-  );
+  return <Chip icon={interval === 'focus' ? 'focus' : 'break'}>{label}</Chip>;
 };

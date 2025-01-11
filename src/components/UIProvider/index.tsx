@@ -1,10 +1,12 @@
 import { PropsWithChildren } from 'react';
 import { ThemeProvider, Global } from '@emotion/react';
-import { AppTheme, PomodoroIntervals, StaticThemeSettings, Theme } from 'types';
-import { useAppSelector } from 'store';
-import { selectTheme } from 'store/settings';
-import { selectCurrentInterval } from 'store/intervals';
+import { AppTheme, ColorScheme, StaticThemeSettings, Theme } from 'types';
 import { styles } from './UIProvider.styles';
+
+type UIProviderProps = {
+  appTheme: AppTheme;
+  colorScheme: ColorScheme;
+};
 
 const makeTheme = (themeSettings: StaticThemeSettings): Theme => {
   const { unit, ...theme } = themeSettings;
@@ -45,10 +47,10 @@ const common = (theme: AppTheme = 'light') => ({
 });
 
 const themes: Record<
-  PomodoroIntervals,
+  ColorScheme,
   Record<AppTheme, StaticThemeSettings['color']>
 > = {
-  pomodoro: {
+  red: {
     light: {
       ...common(),
       primaryLight: '#FF4C4C26',
@@ -64,7 +66,7 @@ const themes: Record<
       background: '#0D0404',
     },
   },
-  shortBreak: {
+  green: {
     light: {
       ...common(),
       primaryLight: '#4DDA6E26',
@@ -80,7 +82,7 @@ const themes: Record<
       background: '#040D06',
     },
   },
-  longBreak: {
+  blue: {
     light: {
       ...common(),
       primaryLight: '#4CACFF26',
@@ -98,13 +100,12 @@ const themes: Record<
   },
 };
 
-export const UIProvider = ({ children }: PropsWithChildren) => {
-  const currentInterval = useAppSelector(selectCurrentInterval);
-  const uiTheme = useAppSelector(selectTheme);
-
-  const theme: Theme = makeTheme(
-    defaultThemeSettings(themes[currentInterval][uiTheme]),
-  );
+export const UIProvider = ({
+  appTheme,
+  children,
+  colorScheme,
+}: PropsWithChildren<UIProviderProps>) => {
+  const theme = makeTheme(defaultThemeSettings(themes[colorScheme][appTheme]));
 
   return (
     <>

@@ -6,7 +6,7 @@ import {
   disableDarkMode,
   enableDarkMode,
   selectIsSoundEnabled,
-  selectTheme,
+  selectAppTheme,
 } from 'store/settings';
 import {
   Intervals,
@@ -22,7 +22,7 @@ export const useSettings = () => {
   const dispatch = useAppDispatch();
 
   const isSoundEnabled = useAppSelector(selectIsSoundEnabled);
-  const theme = useAppSelector(selectTheme);
+  const theme = useAppSelector(selectAppTheme);
 
   const toggleSound = useCallback(
     ({ enable }: Props) => {

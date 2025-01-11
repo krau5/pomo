@@ -4,12 +4,12 @@ import { RootState } from '.';
 
 type State = {
   soundEnabled: boolean;
-  theme: AppTheme;
+  appTheme: AppTheme;
 };
 
 const initialState: State = {
   soundEnabled: true,
-  theme: 'light',
+  appTheme: 'light',
 };
 
 const settingsSlice = createSlice({
@@ -23,10 +23,10 @@ const settingsSlice = createSlice({
       state.soundEnabled = false;
     },
     enableDarkMode: (state) => {
-      state.theme = 'dark';
+      state.appTheme = 'dark';
     },
     disableDarkMode: (state) => {
-      state.theme = 'light';
+      state.appTheme = 'light';
     },
   },
 });
@@ -43,4 +43,7 @@ export const selectIsSoundEnabled = createSelector(
   (state) => state.soundEnabled,
 );
 
-export const selectTheme = createSelector(selectState, (state) => state.theme);
+export const selectAppTheme = createSelector(
+  selectState,
+  (state) => state.appTheme,
+);

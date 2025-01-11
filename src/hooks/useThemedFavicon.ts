@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
-import { selectTheme } from 'store/settings';
+import { selectAppTheme } from 'store/settings';
 
 const link = document.getElementById('favicon') as HTMLLinkElement;
 
 export const useThemedFavicon = () => {
   const currentInterval = useAppSelector(selectCurrentInterval);
-  const theme = useAppSelector(selectTheme);
+  const theme = useAppSelector(selectAppTheme);
 
   useEffect(() => {
     if (link) {

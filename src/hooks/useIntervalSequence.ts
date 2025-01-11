@@ -19,11 +19,11 @@ export const useIntervalSequence = () => {
 
   const getNextInterval = useCallback((): PomodoroIntervals => {
     if (currentInterval === 'shortBreak' || currentInterval === 'longBreak') {
-      return 'pomodoro';
+      return 'focus';
     }
 
     if (
-      currentInterval === 'pomodoro' &&
+      currentInterval === 'focus' &&
       pomodoroCount === pomodorosInSession - 1
     ) {
       return 'longBreak';
@@ -48,7 +48,7 @@ export const useIntervalSequence = () => {
   }, [dispatch, getNextInterval]);
 
   useEffect(() => {
-    dispatch(setCurrentInterval('pomodoro'));
+    dispatch(setCurrentInterval('focus'));
     dispatch(resetPomodoroCount());
   }, [dispatch, pomodorosInSession]);
 

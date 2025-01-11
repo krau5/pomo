@@ -9,9 +9,18 @@ import { store, useAppSelector } from 'store';
 import { selectCurrentInterval } from 'store/intervals';
 import { RemainingTime } from 'features/RemainingTime';
 import { SettingsModal } from 'features/SettingsModal';
+import { selectAppTheme } from 'store/settings';
+import { ColorScheme, PomodoroIntervals } from 'types';
+
+const colorScheme: Record<PomodoroIntervals, ColorScheme> = {
+  focus: 'red',
+  shortBreak: 'green',
+  longBreak: 'blue',
+};
 
 const PomoInterface = () => {
   const currentInterval = useAppSelector(selectCurrentInterval);
+  const appTheme = useAppSelector(selectAppTheme);
 
   const { onIntervalFinish } = useIntervalSequence();
   const { isOpened, open, close } = useOpen();
@@ -19,28 +28,20 @@ const PomoInterface = () => {
   useThemedFavicon();
 
   return (
-    <UIProvider>
+    <UIProvider appTheme={appTheme} colorScheme={colorScheme[currentInterval]}>
       <TimerProvider onTimerFinish={onIntervalFinish}>
         <Box
           display="flex"
           alignItems="center"
           flexDirection="column"
+          gap={8}
           width="100%"
-          mt={8}
         >
           <IntervalChip interval={currentInterval} />
 
-          <Box
-            display="flex"
-            alignItems="center"
-            flexDirection="column"
-            mt={8}
-            gap={8}
-          >
-            <RemainingTime />
+          <RemainingTime />
 
-            <ControlPanel onSettingsClick={open} />
-          </Box>
+          <ControlPanel onSettingsClick={open} />
         </Box>
 
         <SettingsModal isOpened={isOpened} onClose={close} />

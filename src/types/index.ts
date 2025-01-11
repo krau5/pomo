@@ -1,6 +1,8 @@
-export type PomodoroIntervals = 'pomodoro' | 'shortBreak' | 'longBreak';
+export type PomodoroIntervals = 'focus' | 'shortBreak' | 'longBreak';
 
 export type AppTheme = 'light' | 'dark';
+
+export type ColorScheme = 'red' | 'green' | 'blue';
 
 export type ThemeColorName =
   | 'primaryLight'
