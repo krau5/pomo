@@ -68,7 +68,7 @@ export const ControlPanel = ({ onSettingsClick }: Props) => {
   useTimeTitle(minutes, seconds, wasOnceStarted);
 
   return (
-    <Box display="flex" alignItems="center" mt={8}>
+    <Box display="flex" alignItems="center">
       <Button
         aria-label="Open settings"
         icon="dots"

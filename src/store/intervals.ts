@@ -17,9 +17,9 @@ type State = {
 };
 
 const initialState: State = {
-  currentInterval: 'pomodoro',
+  currentInterval: 'focus',
   intervals: {
-    pomodoro: 50,
+    focus: 50,
     shortBreak: 10,
     longBreak: 30,
   },

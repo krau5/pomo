@@ -21,17 +21,19 @@ export const styles = {
       width: 100%;
       height: 100%;
       background: ${theme.color.background};
+      overflow: hidden;
     }
 
     #root {
       display: flex;
       align-items: center;
+      justify-content: center;
       flex-direction: column;
 
       max-width: ${theme.sizing(80)};
       width: ${theme.sizing(80)};
+      height: 100vh;
 
-      padding-top: ${theme.sizing(16)};
       margin: 0 auto;
     }
   `,

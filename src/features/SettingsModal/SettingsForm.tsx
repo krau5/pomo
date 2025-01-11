@@ -53,8 +53,8 @@ export const SettingsForm = ({
         text: 'Focus length',
         component: (
           <TextField
-            onChange={onIntervalChange('pomodoro')}
-            value={intervals['pomodoro']}
+            onChange={onIntervalChange('focus')}
+            value={intervals['focus']}
             min={1}
             max={99}
             type="number"

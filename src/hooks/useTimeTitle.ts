@@ -13,7 +13,7 @@ export const useTimeTitle = (
     if (wasTimerStarted) {
       const title = `${minutes}:${seconds} - Time`;
 
-      if (currentInterval === 'pomodoro') {
+      if (currentInterval === 'focus') {
         document.title = `${title} to focus`;
         return;
       }
