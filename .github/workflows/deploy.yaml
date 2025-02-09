@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'src/**'
-      - 'index.html'
 
 jobs:
   build:
@@ -35,5 +32,8 @@ jobs:
       - name: Build the project
         run: npm run build
 
+      - name: Install Surge
+        run: npm install -g surge
+
       - name: Deploy to Surge
-        run: npm run deploy
+        run: surge --project ./dist --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
